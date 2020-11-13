@@ -10,4 +10,4 @@ services:
       - SYS_NICE
     environment:
       MYSQL_ROOT_PASSWORD: Passw0rd
-      MYSQL_DATABAS: Project_parts_DB
+      MYSQL_DATABASE: Project_parts_DB
