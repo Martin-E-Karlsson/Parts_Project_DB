@@ -1,0 +1,6 @@
+app/model/db/db_settings
+venv
+../../../.idea
+.idea
+app/model/models/__pycache__
+app/model/db/__pycache__
