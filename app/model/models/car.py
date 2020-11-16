@@ -1,6 +1,6 @@
 from model.db import Base
 import sqlalchemy as sa
-from sqlalchemy.orm import relation
+from sqlalchemy.orm import relationship
 
 
 class Car(Base):
@@ -11,8 +11,10 @@ class Car(Base):
     ModelYear = sa.Column(sa.VARCHAR(4), nullable=False)
     Color = sa.Column(sa.VARCHAR(45), nullable=False)
     RegNumber = sa.Column(sa.VARCHAR(32), nullable=False)
-    #    idCustomer = sa.Column(sa.INTEGER, sa.ForeignKey("customer.idCustomer"))
+    # idCustomer = sa.Column(sa.INTEGER, sa.ForeignKey("customer.idCustomer"))
     idSource = sa.Column(sa.INTEGER, sa.ForeignKey("source.idSource"))
+    # Customer = relationship("Customer", back_populates="car")
+    Source = relationship("Source", back_populates="car")
 
     def __repr__(self):
         return f"{self.idCar}, {self.Model}, {self.ModelYear}, {self.Color}, {self.RegNumber}," \

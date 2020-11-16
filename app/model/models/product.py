@@ -1,6 +1,6 @@
 from model.db import Base
 import sqlalchemy as sa
-from sqlalchemy.orm import relation
+from sqlalchemy.orm import relationship
 
 
 class Product(Base):
@@ -14,6 +14,7 @@ class Product(Base):
     SellPrice = sa.Column(sa.INTEGER, nullable=False)
     idSource = sa.Column(sa.INTEGER, sa.ForeignKey("source.idSource"))
     idWarehouse = sa.Column(sa.INTEGER, sa.ForeignKey("warehouse.idWarehouse"))
+    Source = relationship("Source", back_populates="product")
 
 
     def __repr__(self):
