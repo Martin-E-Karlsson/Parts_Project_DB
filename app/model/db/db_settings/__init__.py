@@ -1,5 +1,0 @@
-DB_USER = 'pyuser'
-DB_PASSWORD = 'Passw0rd'
-DB_HOST = 'localhost'
-DB_PORT = '33006'
-DB_DATABASE = 'Project_parts_DB'
