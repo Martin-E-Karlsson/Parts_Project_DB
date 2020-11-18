@@ -20,5 +20,5 @@ def get_car_by_id(id_car):
     return session.query(Car).filter(Car.idCar == id_car).first()
 
 
-def get_car_by_model(model):
-    return session.query(Car).filter(Car.Model.like(model).all())
+def get_cars_by_model(model):
+    return session.query(Car).filter(Car.Model.like(f"%{model}%").all())

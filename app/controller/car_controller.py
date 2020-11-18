@@ -13,5 +13,6 @@ def get_car_by_id(id_car):
     return cr.get_car_by_id(id_car)
 
 
-def get_car_by_model(model):
-    return cr.get_car_by_model()
+def get_cars_by_model(model):
+    cars = cr.get_cars_by_model(model)
+    return {i+1: car for i, car in enumerate(cars)}
