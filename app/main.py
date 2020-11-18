@@ -14,10 +14,8 @@ from model.models.store import Store
 from model.models.store_inventory import StoreInventory
 
 
-
 def main():
     Base.metadata.create_all(engine)
-
 
 
 if __name__ == '__main__':
