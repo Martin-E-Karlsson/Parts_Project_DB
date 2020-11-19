@@ -8,9 +8,9 @@ class OrderDetails(Base):
 
     ProductQuantity = sa.Column(sa.Integer, nullable=False)
     PurchaseDate = sa.Column(sa.DATETIME, nullable=False)
-    idOrder = sa.Column(sa.Integer, sa.ForeignKey('order.idOrder'), primary_key=True, nullable=False)
-    idProduct = sa.Column(sa.Integer, sa.ForeignKey('product.idProduct'), primary_key=True, nullable=False)
-    idEmployee = sa.Column(sa.Integer, sa.ForeignKey('employee.idEmployee'), nullable=False)
+    idOrder = sa.Column(sa.Integer, sa.ForeignKey('orders.idOrder'), primary_key=True, nullable=False)
+    idProduct = sa.Column(sa.Integer, sa.ForeignKey('products.idProduct'), primary_key=True, nullable=False)
+    idEmployee = sa.Column(sa.Integer, sa.ForeignKey('employees.idEmployee'), nullable=False)
     Order = relationship("Order", back_populates="orderdetails")
     Product = relationship("Product", back_populates="orderdetails")
     Employee = relationship("Employee", back_populates="orderdetails")

@@ -10,7 +10,9 @@ class Retailer(Base):
     Address = sa.Column(sa.String(45), nullable=False)
     idContact = sa.Column(sa.Integer, sa.ForeignKey("contacts.idContact"))
     idManufacturer = sa.Column(sa.Integer, sa.ForeignKey("manufacturers.idManufacturer"))
-    Manufacturer = relationship("Retailer", back_populates = "Manufacturer")
+
+    Manufacturer = relationship("Manufacturer", back_populates="Parts")
+    Contacts = relationship("Retailer", back_populates="Contacts")
 
     def __repr__(self):
         return f"{self.idRetailer},{self.Name}, {self.Address}"

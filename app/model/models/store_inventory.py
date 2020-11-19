@@ -4,10 +4,12 @@ from sqlalchemy.orm import relationship
 
 
 class StoreInventory(Base):
-    __tablename__ = 'storeinventory'
+    __tablename__ = 'storeinventorys'
 
-    idProduct = sa.Column(sa.Integer, sa.ForeignKey('product.idProduct'), primary_key=True, nullable=False)
-    idStore = sa.Column(sa.Integer, sa.ForeignKey('store.idStore'), primary_key=True, nullable=False)
+    temp = sa.Column(sa.INTEGER, primary_key=True)
+    #idProduct = sa.Column(sa.Integer, sa.ForeignKey('product.idProduct'), primary_key=True, nullable=False)
+    #idStore = sa.Column(sa.Integer, sa.ForeignKey('store.idStore'), primary_key=True, nullable=False)
+
     Product = relationship("Product", back_populates="storeinventory")
     Store = relationship("Store", back_populates="storeinventory")
 

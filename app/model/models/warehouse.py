@@ -2,9 +2,8 @@ from model.db import Base
 import sqlalchemy as sa
 
 
-
 class Warehouse(Base):
-    __tablename__ = "warehouse"
+    __tablename__ = "warehouses"
 
     idWarehouse = sa.Column(sa.INTEGER, primary_key=True)
     ProductInStorage = sa.Column(sa.INTEGER, nullable=False)

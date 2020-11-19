@@ -4,17 +4,18 @@ from sqlalchemy.orm import relationship
 
 
 class Car(Base):
-    __tablename__ = "car"
+    __tablename__ = "cars"
 
     idCar = sa.Column(sa.INTEGER, primary_key=True)
-    Model = sa.Column(sa.VARCHAR(45), nullable=False)
-    ModelYear = sa.Column(sa.VARCHAR(4), nullable=False)
-    Color = sa.Column(sa.VARCHAR(45), nullable=False)
-    RegNumber = sa.Column(sa.VARCHAR(32), nullable=False)
-    idCustomer = sa.Column(sa.INTEGER, sa.ForeignKey("customer.idCustomer"))
-    idSource = sa.Column(sa.INTEGER, sa.ForeignKey("source.idSource"))
-    Customer = relationship("Customer", back_populates="car")
-    Source = relationship("Source", back_populates="car")
+    Model = sa.Column(sa.String(45), nullable=False)
+    ModelYear = sa.Column(sa.String(4), nullable=False)
+    Color = sa.Column(sa.String(45), nullable=False)
+    RegNumber = sa.Column(sa.String(32), nullable=False)
+    idSource = sa.Column(sa.INTEGER, sa.ForeignKey('sources.idSource'), nullable=False)
+    idCustomer = sa.Column(sa.INTEGER, sa.ForeignKey('customers.idCustomer'), nullable=False)
+    #name,place,name in place
+    Customer = relationship("Customer", back_populates="Car_owner")
+    Sources = relationship("Source", back_populates="car_origin")
 
     def __repr__(self):
         return f"{self.idCar}, {self.Model}, {self.ModelYear}, {self.Color}, {self.RegNumber}," \
