@@ -7,7 +7,7 @@ class Order(Base):
     __tablename__ = "orders"
 
     idOrder = sa.Column(sa.Integer, primary_key=True)
-    #idCustomer = sa.Column(sa.Integer, sa.ForeignKey("customers.idCustomer"))
+    idCustomer = sa.Column(sa.Integer, sa.ForeignKey("customers.idCustomer"))
 
     Customers = relationship("Customer", back_populates="Orders")
 
