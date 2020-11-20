@@ -2,8 +2,8 @@ from model.db import session
 from model.models.order import Order
 
 
-def insert_order():
-    new_order = Order()
+def insert_order(id_customer):
+    new_order = Order(idCustomer=id_customer)
     session.add(new_order)
     session.commit()
 

@@ -1,8 +1,8 @@
 import model.repository.order_repo as orp
 
 
-def insert_order():
-    orp.insert_car()
+def insert_order(id_customer):
+    orp.insert_car(id_customer)
 
 
 def get_all_orders():

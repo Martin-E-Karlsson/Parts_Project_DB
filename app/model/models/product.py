@@ -12,8 +12,8 @@ class Product(Base):
     Description = sa.Column(sa.String(45), nullable=False)
     PurchaseCost = sa.Column(sa.INTEGER, nullable=False)
     SellPrice = sa.Column(sa.INTEGER, nullable=False)
-    idSource = sa.Column(sa.INTEGER, sa.ForeignKey("sources.idSource"))
-    idWarehouse = sa.Column(sa.INTEGER, sa.ForeignKey("warehouses.idWarehouse"))
+    idSource = sa.Column(sa.INTEGER, sa.ForeignKey("sources.idSource"), nullable=False)
+    idWarehouse = sa.Column(sa.INTEGER, sa.ForeignKey("warehouses.idWarehouse"), nullable=False)
 
     Product = relationship("Product", back_populates="storeinventory")
     Source = relationship("Source", back_populates="product")

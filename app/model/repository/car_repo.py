@@ -2,7 +2,7 @@ from model.db import session
 from model.models.car import Car
 
 
-def insert_car(model, model_year, color, reg_number, id_customer=None, id_source=None):
+def insert_car(model, model_year, color, reg_number, id_customer, id_source):
     new_car = Car(
         Model=model,
         ModelYear=model_year,
@@ -22,7 +22,7 @@ def get_car_by_id(id_car):
     return session.query(Car).filter(Car.idCar == id_car).first()
 
 
-def get_car_by_model(model):
+def get_cars_by_model(model):
     return session.query(Car).filter(Car.Model.like(f"%{model}%").all())
 
 
