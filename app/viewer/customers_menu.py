@@ -17,9 +17,9 @@ def customers_menu():
         print("5. Quit customers menu")
         selection = input("> ")
         if selection == "1":
-            insert_customer()  # Calls a method in file contacts_menu.py
+            insert_customer()
         elif selection == "2":
-            customers = get_all_customers()  # Calls a method to be created in controller
+            customers = get_all_customers()
             for customer in customers:
                 print(customer)
         elif selection == "3":
@@ -39,8 +39,8 @@ def customers_menu():
 
             customer = customers[edit_selection]
             print(f" 1. Customer Address: {customer.Address}")
-            customer.Address = input("Enter a new address: ")
-            store_changes()
+            new_value = input("Enter a new address: ")
+            change_customer_address(customer, new_value)
         elif selection == "5":
             break
 

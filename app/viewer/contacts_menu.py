@@ -1,65 +1,40 @@
-from controller.contacts_controller import view_all_contacts
-from controller.contacts_controller import c.add_new_contacts()
-from controller.companies_controller import add_new_company_address()
-from .customers_menu import add_customers
-from .companies_menu import add_new_company
-
-def add_new_contacts():
-    print("Is the contact a company?")
-    answer = None
-    while answer not in ("yes", "no"):
-        answer = input("Write yes or no: ")
-        if answer.lower() == "yes":
-            add_new_company()       # Calls a method in companies_menu.py
-            c.add_new_contacts()  # Calls a method to be created in controller
-        elif answer.lower() == "no":
-            c.add_new_contacts  # Calls a method to be created in controller
-        else:
-            print("Write yes or no: ")
-
-def update_contact():
-    print("Is the contact of a company?")
-    answer = None
-    while answer not in ("yes", "no"):
-        answer = input("Write yes or no: ")
-        if answer.lower() == "yes":
-            print("Do you want to update the address?")
-            answer1 = None
-            while answer1 not in ("yes", "no"):
-                answer1 = input("Write yes or no: ")
-                if answer1.lower() == "yes":
-                    add_new_company_address()  # Calls a method to be created in controller
-                elif  answer1.lower() == "no":
-                    c.update_contact()  # Calls a method to be created in controller
-                else:
-                    print("Write yes or no: ")
-        elif answer.lower() == "no":
-            c.update_contact()          # Calls a method to be created in controller
-        else:
-            print("Write yes or no: ")
+from controller.contact_controller import insert_contact, get_all_contacts, get_contact_by_id, get_contact_by_name
+from controller.controller import store_changes
 
 def contacts_menu():
     while True:
         print("Contacts menu")
         print("xxxxxxxx")
-        print("1. View all the contacts")
-        print("2. Add contacts")
-        print("3. Update information of a contact")
-        print("4. Quit contacts menu")
+        print("1. Add a new contact")
+        print("2. View all the contacts")
+        print("3. View contact by id")
+        print("4. View/edit contact name")
+        print("5. Quit contacts menu")
         selection = input("> ")
                 if selection == "1":
-                    view_all_contacts()         # Calls to method in controller
+                    insert_contact()
                 elif selection == "2":
-                    print("Is the contact a company?")
-                    answer = input("yes or no: ")
-                    if answer.lower() == "no":
-                        add_new_contacts()      # Calls to method in controller
-                        add_customers()         #Calls to method in file customer_menu.py
-                    elif answer.lower =="yes":
-                        add_new_company()       #Calls to method in file companies_menu.py
-                    else:
-                        print("Write yer or no")
+                    contacts = get_all_contacts()
+                    for contact in contacts:
+                        print(contact)
                 elif selection == "3":
-                    update_contact()
-                elif selection =="4":
+                    id = input("Indicate contact id: ")
+                    contact = get_contact_by_id(id)
+                    if contact:
+                        print(contact)
+                    else:
+                        print("Could not find a contact with id", id)
+                elif selection == "4":
+                    name = input("Enter complete or partial name: ")
+                    customers = get_contact_by_name(name)
+                    for key, customer in customers.items():
+                        print(f"{key}.{customer}")
+                    edit_selection = input("Enter number for contact to edit: ")
+                    edit_selection = int(edit_selection)
+
+                    customer = customers[edit_selection]
+                    print(f" 1. Contact name: {customer.Name}")
+                    customer.Name = input("Enter a new name: ")
+                    store_changes()
+                elif selection =="5":
                     break
