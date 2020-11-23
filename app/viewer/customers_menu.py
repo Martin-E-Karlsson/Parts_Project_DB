@@ -17,6 +17,7 @@ def customers_menu():
         print("5. Quit customers menu")
         selection = input("> ")
         if selection == "1":
+            add_customer_name =
             insert_customer()
         elif selection == "2":
             customers = get_all_customers()
