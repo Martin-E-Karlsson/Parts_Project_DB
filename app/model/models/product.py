@@ -15,9 +15,12 @@ class Product(Base):
     idSource = sa.Column(sa.INTEGER, sa.ForeignKey("sources.idSource"), nullable=False)
     idWarehouse = sa.Column(sa.INTEGER, sa.ForeignKey("warehouses.idWarehouse"), nullable=False)
 
-    Product = relationship("Product", back_populates="storeinventory")
-    Source = relationship("Source", back_populates="product")
-    storeinventory = relationship("Product", back_populates="Product")
+
+    ProductCatalogs = relationship("ProductCatalog", back_populates="Product")
+    orderdetails = relationship("OrderDetails", back_populates="Product")
+    Source_of_product = relationship("Source", back_populates="product_source")
+    storeinventory = relationship("StoreInventory", back_populates="Product")
+
 
     def __repr__(self):
         return f"{self.idProduct}, {self.Name}, {self.Retailer}, {self.Description}, {self.PurchaseCost}, " \

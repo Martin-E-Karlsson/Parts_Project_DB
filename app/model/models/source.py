@@ -11,7 +11,7 @@ class Source(Base):
 
     Name_of_Manufacturer = relationship("Manufacturer", back_populates="Sources")
     car_origin = relationship("Car", back_populates="Sources")
-    product = relationship("Product", back_populates="Source")
+    product_source = relationship("Product", back_populates="Source_of_product")
 
 
     def __repr__(self):

@@ -8,7 +8,10 @@ class Company(Base):
 
     idCompany = sa.Column(sa.Integer, primary_key=True)
     CompanyName = sa.Column(sa.String(45), nullable=False)
-    Contacts = relationship("Company", back_populates="Contact")
+
+    Contacts = relationship("Contact", back_populates="Companies")
+
+
 
     def __repr__(self):
         return f"{self.idCompany}, {self.CompanyName}"

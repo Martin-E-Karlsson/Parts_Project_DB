@@ -12,7 +12,10 @@ class Retailer(Base):
     idManufacturer = sa.Column(sa.Integer, sa.ForeignKey("manufacturers.idManufacturer"))
 
     Manufacturer = relationship("Manufacturer", back_populates="Parts")
-    Contacts = relationship("Retailer", back_populates="Contacts")
+    Contacts = relationship("Contact", back_populates="Retailer")
+    ProductCatalogs = relationship("ProductCatalog", back_populates="Retailer")
+
+
 
     def __repr__(self):
         return f"{self.idRetailer},{self.Name}, {self.Address}"

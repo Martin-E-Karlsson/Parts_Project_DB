@@ -9,6 +9,8 @@ class Store(Base):
     idStore = sa.Column(sa.Integer, primary_key=True, nullable=False)
     Name = sa.Column(sa.String(100), nullable=False)
     StoreType = sa.Column(sa.String(100), nullable=False)
+
+    employees = relationship("Employee", back_populates="Store")
     storeinventory = relationship("StoreInventory", back_populates="Store")
 
     def __repr__(self):
