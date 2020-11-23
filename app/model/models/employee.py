@@ -11,6 +11,8 @@ class Employee(Base):
     Email = sa.Column(sa.String(100), nullable=False)
     PhoneNumber = sa.Column(sa.String(100), nullable=False)
     idStore = sa.Column(sa.Integer, sa.ForeignKey("stores.idStore"), nullable=False)
+
+    orderdetails = relationship("OrderDetails", back_populates="Employee")
     Store = relationship("Store", back_populates="employees")
 
     def __repr__(self):

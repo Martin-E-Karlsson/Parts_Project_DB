@@ -13,7 +13,9 @@ class Contact(Base):
     idCompany = sa.Column(sa.Integer, sa.ForeignKey("companies.idCompany"))
 
     Customers = relationship("Customer", back_populates="Contacts")
+    Retailer = relationship("Retailer", back_populates="Contacts")
     Companies = relationship("Company", back_populates="Contacts")
+
 
 
     def __repr__(self):
