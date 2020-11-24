@@ -21,8 +21,12 @@ def get_contact_by_id(id_contact):
     return session.query(Contact).filter(Contact.idContact == id_contact).first()
 
 
+def get_all_contacts_with_name(name):
+    return session.query(Contact).filter(Contact.Name.like(f"%{name}%"))
+
+
 def get_contact_by_name(name):
-    return session.query(Contact).filter(Contact.Name.like(f"%{name}%").all())
+    return session.query(Contact).filter(Contact.Name == name).first()
 
 
 def change_contact_name(contact, new_name):
