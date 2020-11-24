@@ -6,14 +6,15 @@ def companies_menu():
     while True:
         print("Companies menu")
         print("xxxxxxxx")
-        print("1. Add a new customer")
+        print("1. Add a new company")
         print("2. View all the companies")
         print("3. View company by id")
         print("4. View/edit company name")
         print("5. Quit company menu")
         selection = input("> ")
         if selection == "1":
-            insert_company()
+            company_name = input("Write the name of the company: ")
+            insert_company(company_name)
         elif selection == "2":
             companies = get_all_companies()
             for company in companies:

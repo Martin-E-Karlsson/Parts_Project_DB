@@ -1,8 +1,12 @@
+from datetime import datetime
+
+from controller.order_controller import insert_order
 from controller.order_details_controller import insert_order_details, get_all_order_details, \
     get_order_details_by_order_id, get_order_details_by_purchase_date, change_order_details_product_quantity
+from controller.product_controller import get_product_by_name
 
 
-def customers_menu():
+def orders_details_menu():
     while True:
         print("Orders details menu")
         print("xxxxxxxx")
@@ -13,7 +17,21 @@ def customers_menu():
         print("5. Quit orders details menu")
         selection = input("> ")
         if selection == "1":
-            insert_order_details()
+            id_customer = input("Write the id of the customer: ")
+            add_order = insert_order(id_customer)
+            id_order = add_order.idOrder
+            name = input("Write the complete or partial name of the product: ")
+            products = get_product_by_name(name)
+            for key, product in products.items():
+                print(f"{key}.{product}")
+            select_product = input("Enter the number of the product to be selected: ")
+            select_product = int(select_product)
+            product = products[select_product]
+            id_product = product.idProduct
+            id_employee = input("Write your employee id: ")
+            product_quantity = input("Write the number of products: ")
+            purchase_date = datetime.now
+            insert_order_details(product_quantity, purchase_date, id_order, id_product, id_employee)
         elif selection == "2":
             orders_details = get_all_order_details()
             for order_details in orders_details:

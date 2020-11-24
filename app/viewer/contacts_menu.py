@@ -12,7 +12,11 @@ def contacts_menu():
         print("5. Quit contacts menu")
         selection = input("> ")
                 if selection == "1":
-                    insert_contact()
+                    name = input("Write the name of the contact: ")
+                    phone_number = input("Write the phone_number of the contact: ")
+                    email = input("Write the email of the contact: ")
+                    id_company = input("Write the id_company of the contact: ")
+                    insert_contact(name,phone_number,email,id_company)
                 elif selection == "2":
                     contacts = get_all_contacts()
                     for contact in contacts:
