@@ -2,14 +2,15 @@ from model.db import session
 from model.models.car import Car
 
 
-def insert_car(model, model_year, color, reg_number, id_customer, id_source):
+def insert_car(model, model_year, color, reg_number, id_source, id_customer):
     new_car = Car(
         Model=model,
         ModelYear=model_year,
         Color=color,
         RegNumber=reg_number,
         idSource=id_source,
-        idCustomer=id_customer)
+        idCustomer=id_customer
+    )
     session.add(new_car)
     session.commit()
 

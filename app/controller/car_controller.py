@@ -1,8 +1,8 @@
 import model.repository.car_repo as cr
 
 
-def insert_car(model, model_year, color, reg_number, id_customer=None, id_source=None):
-    cr.insert_car(model, model_year, color, reg_number, id_customer, id_source)
+def insert_car(model, model_year, color, reg_number, id_source=None, id_customer=None):
+    cr.insert_car(model, model_year, color, reg_number, id_source, id_customer)
 
 
 def get_all_cars():
