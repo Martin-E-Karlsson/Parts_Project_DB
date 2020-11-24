@@ -2,6 +2,8 @@ from model.db import Base
 import sqlalchemy as sa
 from sqlalchemy.orm import relationship
 
+from model.models.product_catalog import ProductCatalog
+from model.models.store_inventory import StoreInventory
 
 class Product(Base):
     __tablename__ = "products"

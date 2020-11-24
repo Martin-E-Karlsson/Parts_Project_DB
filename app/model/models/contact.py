@@ -2,6 +2,7 @@ from model.db import Base
 import sqlalchemy as sa
 from sqlalchemy.orm import relationship
 
+from model.models.company import Company
 
 class Contact(Base):
     __tablename__ = "contacts"

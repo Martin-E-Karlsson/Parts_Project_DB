@@ -22,7 +22,7 @@ def get_warehouse_by_id(id_warehouse):
 
 
 def get_warehouses_by_product_delivery_date(product_delivery_date):
-    return session.query(Warehouse).filter(Warehouse.ProductDeliveryDate == product_delivery_date).first()
+    return session.query(Warehouse).filter(Warehouse.ProductDeliveryDate == product_delivery_date).all()
 
 
 def change_product_in_storage(warehouse, new_product_in_storage):

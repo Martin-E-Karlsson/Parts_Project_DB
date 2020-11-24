@@ -15,8 +15,8 @@ def warehouse_menu():
         selection = input("> ")
         if selection == "1":
             warehouses = get_all_warehouses()
-            for i in warehouses:
-                print(i)
+            [print(i) for i in warehouses]
+
         elif selection == "2":
             print("input warehouse id")
             id_warehouse = input("> ")
@@ -25,18 +25,26 @@ def warehouse_menu():
         elif selection == "3":
             print("input date")
             year = input("yyyy > ")
+
             month = input("mm > ")
             day = input("dd > ")
-            product_delivery_date = f"{year}-{month}-{day}"
-            print(get_warehouses_by_product_delivery_date(product_delivery_date))
+            if year == "" or month == "" or day == "":
+                product_delivery_date = None
+
+            else:
+                product_delivery_date = f"{year}-{month}-{day}"
+            w = get_warehouses_by_product_delivery_date(product_delivery_date)
+            [print(k, " : ", w[k]) for k in w]
 
         elif selection == "4":
             print("witch warehouse?")
             warehouse = input("> ")
             print("how many items is in storge?")
             new_product_in_storage = input("> ")
-            change_product_in_storage(int(warehouse), int(new_product_in_storage))
+            change_product_in_storage(get_warehouse_by_id(int(warehouse)), int(new_product_in_storage))
 
         elif selection == "5":
             break
         print()
+
+warehouse_menu()

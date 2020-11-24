@@ -2,6 +2,7 @@ from model.db import Base
 import sqlalchemy as sa
 from sqlalchemy.orm import relationship
 
+from model.models.source import Source
 
 class Manufacturer(Base):
     __tablename__ = "manufacturers"

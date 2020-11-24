@@ -1,6 +1,7 @@
 from model.db import Base
 import sqlalchemy as sa
 
+from model.models.product import Product
 
 class Warehouse(Base):
     __tablename__ = "warehouses"

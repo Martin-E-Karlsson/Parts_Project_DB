@@ -20,11 +20,11 @@ def get_store_by_id(id_store):
 
 
 def get_stores_by_name(name):
-    return session.query(Store).filter(Store.Name.like(f"%{name}%").all())
+    return session.query(Store).filter(Store.Name.like(f"%{name}%")).all()
 
 
 def get_stores_by_type(store_type):
-    return session.query(Store).filter(Store.StoreType.like(f"%{store_type}%").all())
+    return session.query(Store).filter(Store.StoreType.like(f"%{store_type}%")).all()
 
 
 def change_store_name(store, new_name):

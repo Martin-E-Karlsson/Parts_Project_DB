@@ -1,8 +1,7 @@
 from model.db import Base
 import sqlalchemy as sa
 from sqlalchemy.orm import relationship
-
-
+from model.models.car import Car
 class Source(Base):
     __tablename__ = "sources"
 
