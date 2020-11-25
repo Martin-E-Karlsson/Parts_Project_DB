@@ -14,13 +14,12 @@ from model.models.store import Store
 from model.models.customer import Customer
 from model.models.product_catalog import ProductCatalog
 from model.models.store_inventory import StoreInventory
-
-from viewer.store_menu import store_menu
+from viewer.menu import main_menu
 
 
 def main():
     Base.metadata.create_all(engine)
-    store_menu()
+    main_menu()
 
 if __name__ == '__main__':
     main()
