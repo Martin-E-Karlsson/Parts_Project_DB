@@ -2,7 +2,6 @@ from model.db import Base
 import sqlalchemy as sa
 from sqlalchemy.orm import relationship
 
-from model.models.product import Product
 
 class OrderDetails(Base):
     __tablename__ = 'orderdetails'

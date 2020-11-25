@@ -4,7 +4,7 @@ venv
 .idea
 app/model/models/__pycache__
 app/model/db/__pycache__
-app/model/alembic.ini
 app/controller/__pycache__
 app/viewer/__pycache__
 app/model/repository/__pycache__
+app/model/alembic.ini

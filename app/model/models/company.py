@@ -2,7 +2,6 @@ from model.db import Base
 import sqlalchemy as sa
 from sqlalchemy.orm import relationship
 
-from model.models.order import Order
 class Company(Base):
     __tablename__ = "companies"
 

@@ -2,7 +2,7 @@ from controller.product_controller import insert_product, get_all_products, get_
     change_product_name
 
 
-def customers_menu():
+def products_menu():
     while True:
         print("Poducts menu")
         print("xxxxxxxx")
@@ -13,7 +13,14 @@ def customers_menu():
         print("5. Quit products menu")
         selection = input("> ")
         if selection == "1":
-            insert_product()
+            name = input("Write the product name: ")
+            retailer = input("Write the product retailer: ")
+            description = input("Write the product description: ")
+            purchase_cost = input("Write the product purchase_cost: ")
+            sell_price = input("Write the product sell_price: ")
+            id_source = input("Write the product id_source: ")
+            id_warehouse = input("Write the product id_warehouse: ")
+            insert_product(name, retailer, description, purchase_cost, sell_price, id_source, id_warehouse)
         elif selection == "2":
             products = get_all_products()
             for product in products:

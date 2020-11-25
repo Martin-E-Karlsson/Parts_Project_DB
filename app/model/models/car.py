@@ -2,7 +2,6 @@ from model.db import Base
 import sqlalchemy as sa
 from sqlalchemy.orm import relationship
 
-from model.models.customer import Customer
 
 class Car(Base):
     __tablename__ = "cars"

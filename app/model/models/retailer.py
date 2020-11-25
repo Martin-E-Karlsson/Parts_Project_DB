@@ -2,7 +2,6 @@ from model.db import Base
 import sqlalchemy as sa
 from sqlalchemy.orm import relationship
 
-from model.models.manufacturer import Manufacturer
 
 class Retailer(Base):
     __tablename__ = "retailers"
@@ -16,8 +15,6 @@ class Retailer(Base):
     Manufacturer = relationship("Manufacturer", back_populates="Parts")
     Contacts = relationship("Contact", back_populates="Retailer")
     ProductCatalogs = relationship("ProductCatalog", back_populates="Retailer")
-
-
 
     def __repr__(self):
         return f"{self.idRetailer},{self.Name}, {self.Address}"
