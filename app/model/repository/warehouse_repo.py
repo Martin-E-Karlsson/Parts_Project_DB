@@ -21,7 +21,7 @@ def get_warehouse_by_id(id_warehouse):
     return session.query(Warehouse).filter(Warehouse.idWarehouse == id_warehouse).first()
 
 
-def get_warehouses_by_product_delivery_date(product_delivery_date):
+def get_all_warehouses_with_product_delivery_date(product_delivery_date):
     return session.query(Warehouse).filter(Warehouse.ProductDeliveryDate == product_delivery_date).all()
 
 

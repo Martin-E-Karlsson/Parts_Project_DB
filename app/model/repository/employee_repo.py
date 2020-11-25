@@ -21,7 +21,7 @@ def get_employee_by_id(id_employee):
     return session.query(Employee).filter(Employee.idEmployee == id_employee).first()
 
 
-def get_employee_by_name(name):
+def get_all_employees_with_name(name):
     return session.query(Employee).filter(Employee.Name.like(f"%{name}%").all())
 
 

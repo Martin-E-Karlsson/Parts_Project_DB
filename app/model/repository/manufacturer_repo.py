@@ -20,7 +20,7 @@ def get_manufacturer_by_id(id_manufacturer):
     return session.query(Manufacturer).filter(Manufacturer.idManufacturer == id_manufacturer).first()
 
 
-def get_manufacturer_by_name(manufacturer_name):
+def get_all_manufacturers_with_name(manufacturer_name):
     return session.query(Manufacturer).filter(Manufacturer.ManufacturerName.like(f"%{manufacturer_name}%").all())
 
 

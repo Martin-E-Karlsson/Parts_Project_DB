@@ -21,7 +21,7 @@ def get_retailer_by_id(id_retailer):
     return session.query(Retailer).filter(Retailer.idRetailer == id_retailer).first()
 
 
-def get_retailer_by_name(name):
+def get_all_retailers_with_name(name):
     return session.query(Retailer).filter(Retailer.Name.like(f"%{name}%").all())
 
 

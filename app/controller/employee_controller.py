@@ -13,8 +13,8 @@ def get_employee_by_id(id_employee):
     return er.get_employee_by_id(id_employee)
 
 
-def get_employee_by_name(name):
-    employees = er.get_employee_by_name(name)
+def get_all_employees_with_name(name):
+    employees = er.get_all_employees_with_name(name)
     return {i+1: employee for i, employee in enumerate(employees)}
 
 

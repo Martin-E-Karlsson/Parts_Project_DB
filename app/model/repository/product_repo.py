@@ -24,7 +24,7 @@ def get_product_by_id(id_product):
     return session.query(Product).filter(Product.idProduct == id_product).first()
 
 
-def get_product_by_name(name):
+def get_all_products_with_name(name):
     return session.query(Product).filter(Product.Name.like(f"%{name}%").all())
 
 

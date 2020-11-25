@@ -13,8 +13,8 @@ def get_product_by_id(id_product):
     return pr.get_product_by_id(id_product)
 
 
-def get_product_by_name(name):
-    products = pr.get_product_by_name(name)
+def get_all_products_with_name(name):
+    products = pr.get_all_products_with_name(name)
     return {i+1: product for i, product in enumerate(products)}
 
 

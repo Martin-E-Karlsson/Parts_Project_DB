@@ -23,7 +23,7 @@ def get_customer_by_contact_id(id_contact):
     return session.query(Customer).filter(Customer.idContact == id_contact).first()
 
 
-def get_customer_by_address(address):
+def get_all_customers_with_address(address):
     return session.query(Customer).filter(Customer.Address.like(f"%{address}%").all())
 
 

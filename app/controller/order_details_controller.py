@@ -14,8 +14,8 @@ def get_order_details_by_order_id(id_order):
 
 
 # TODO: Order details to be searchable by entering year/month/day. get_order_details_by_purchase_date(year, month, day)
-def get_order_details_by_purchase_date(purchase_date):
-    order_details = odr.get_order_details_by_purchase_date(purchase_date)
+def get_all_order_details_with_purchase_date(purchase_date):
+    order_details = odr.get_all_order_details_with_purchase_date(purchase_date)
     return {i+1: order_detail for i, order_detail in enumerate(order_details)}
 
 

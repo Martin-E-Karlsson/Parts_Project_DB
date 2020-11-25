@@ -17,8 +17,8 @@ def get_customer_by_contact_id(id_contact):
     return cr.get_customer_by_contact_id(id_contact)
 
 
-def get_customer_by_address(address):
-    customers = cr.get_customer_by_address(address)
+def get_all_customers_with_address(address):
+    customers = cr.get_all_customers_with_address(address)
     return {i+1: customer for i, customer in enumerate(customers)}
 
 

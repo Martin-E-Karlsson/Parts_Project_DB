@@ -13,8 +13,8 @@ def get_warehouse_by_id(id_warehouse):
     return wr.get_warehouse_by_id(id_warehouse)
 
 
-def get_warehouses_by_product_delivery_date(product_delivery_date):
-    warehouses = wr.get_warehouses_by_product_delivery_date(product_delivery_date)
+def get_all_warehouses_with_product_delivery_date(product_delivery_date):
+    warehouses = wr.get_all_warehouses_with_product_delivery_date(product_delivery_date)
     return {i+1: warehouse for i, warehouse in enumerate(warehouses)}
 
 

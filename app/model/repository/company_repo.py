@@ -16,7 +16,7 @@ def get_company_by_id(id_company):
     return session.query(Company).filter(Company.idCompany == id_company).first()
 
 
-def get_company_by_name(company_name):
+def get_companies_by_name(company_name):
     return session.query(Company).filter(Company.CompanyName.like(f"%{company_name}%").all())
 
 

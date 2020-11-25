@@ -22,7 +22,7 @@ def get_order_details_by_order_id(id_order):
     return session.query(OrderDetails).filter(OrderDetails.idOrder == id_order).first()
 
 
-def get_order_details_by_purchase_date(purchase_date):
+def get_all_order_details_with_purchase_date(purchase_date):
     return session.query(OrderDetails).filter(OrderDetails.PurchaseDate == purchase_date).first()
 
 

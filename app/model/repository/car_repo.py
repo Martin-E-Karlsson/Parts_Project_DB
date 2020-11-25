@@ -23,13 +23,17 @@ def get_car_by_id(id_car):
     return session.query(Car).filter(Car.idCar == id_car).first()
 
 
-def get_cars_by_model(model):
-    return session.query(Car).filter(Car.Model.like(f"%{model}%").all())
-
-
-def change_car_model(car, new_model):
+def get_all_cars_by_attribute(attribute_name, value):
     try:
-        car.Model = new_model
+        return session.query(Car).filter(getattr(Car, attribute_name).like(f"%{value}%")).all()
+    except ValueError:
+        print(f"The attribute_name; {attribute_name} was incorrect.")
+
+
+def change_car_attribute(car, attribute_name, new_value):
+    try:
+        setattr(car, attribute_name, new_value)
         session.commit()
-    except:
+    except ValueError:
+        print('Incorrect argument entered')
         session.rollback()

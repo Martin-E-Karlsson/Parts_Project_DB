@@ -13,8 +13,8 @@ def get_company_by_id(id_company):
     return cr.get_company_by_id(id_company)
 
 
-def get_company_by_name(company_name):
-    companies = cr.get_company_by_name(company_name)
+def get_companies_by_name(company_name):
+    companies = cr.get_companies_by_name(company_name)
     return {i+1: company for i, company in enumerate(companies)}
 
 

@@ -13,8 +13,8 @@ def get_retailer_by_id(id_retailer):
     return rr.get_retailer_by_id(id_retailer)
 
 
-def get_retailer_by_name(name):
-    retailers = rr.get_retailer_by_name(name)
+def get_all_retailers_with_name(name):
+    retailers = rr.get_all_retailers_with_name(name)
     return {i+1: retailer for i, retailer in enumerate(retailers)}
 
 
