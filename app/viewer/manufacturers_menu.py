@@ -1,5 +1,5 @@
 from controller.manufacturer_controller import insert_manufacturer, get_all_manufacturers, get_manufacturer_by_id, \
-    get_manufacturer_by_name, change_manufacturer_name
+    get_all_manufacturers_with_name, change_manufacturer_name
 
 
 def manufacturers_menu():
@@ -30,7 +30,7 @@ def manufacturers_menu():
                 print("Could not find a manufacturer with id", id_manufacturer)
         elif selection == "4":
             manufacturer_name = input("Enter complete or partial manufacturer's name: ")
-            manufacturers= get_manufacturer_by_name(manufacturer_name)
+            manufacturers = get_all_manufacturers_with_name(manufacturer_name)
             for key, manufacturer in manufacturers.items():
                 print(f"{key}.{manufacturer}")
             edit_selection = input("Enter number for manufacturer to edit: ")

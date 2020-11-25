@@ -22,7 +22,7 @@ def get_retailer_by_id(id_retailer):
 
 
 def get_all_retailers_with_name(name):
-    return session.query(Retailer).filter(Retailer.Name.like(f"%{name}%").all())
+    return session.query(Retailer).filter(Retailer.Name.like(f"%{name}%")).all()
 
 
 def change_retailer_name(retailer, new_name):
