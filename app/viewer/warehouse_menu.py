@@ -8,10 +8,10 @@ def warehouse_menu():
         print("warehouse_menu")
         print("xxxxxxxx")
         print("1. View all warehouses")
-        print("2. View warehous by id")
+        print("2. View warehouse by id")
         print("3. get warehouses by product delivery date")
         print("4. change product in storage")
-        print("5. Quit customers menu")
+        print("5. Quit warehouse menu")
         selection = input("> ")
         if selection == "1":
             warehouses = get_all_warehouses()
@@ -47,4 +47,3 @@ def warehouse_menu():
             break
         print()
 
-warehouse_menu()

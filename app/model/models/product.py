@@ -2,8 +2,7 @@ from model.db import Base
 import sqlalchemy as sa
 from sqlalchemy.orm import relationship
 
-from model.models.product_catalog import ProductCatalog
-from model.models.store_inventory import StoreInventory
+
 
 class Product(Base):
     __tablename__ = "products"
@@ -17,7 +16,7 @@ class Product(Base):
     idSource = sa.Column(sa.INTEGER, sa.ForeignKey("sources.idSource"), nullable=False)
     idWarehouse = sa.Column(sa.INTEGER, sa.ForeignKey("warehouses.idWarehouse"), nullable=False)
 
-
+    productWarehouse = relationship("Warehouse", back_populates="products")
     ProductCatalogs = relationship("ProductCatalog", back_populates="Product")
     orderdetails = relationship("OrderDetails", back_populates="Product")
     Source_of_product = relationship("Source", back_populates="product_source")

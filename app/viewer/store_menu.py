@@ -13,7 +13,7 @@ def store_menu():
         print("5. Show store by type")
         print("6. Change store name")
         print("7. Change store type")
-        print("8. Quit customers menu")
+        print("8. Quit store menu")
         selection = input("> ")
 
         if selection == "1":
@@ -49,7 +49,7 @@ def store_menu():
             new_name = input("> ")
             change_store_name(store, new_name)
         elif selection == "7":
-            print("which do you want to change (id)")
+            print("which store do you want to change (id)")
             id_store = input("> ")
             store = get_store_by_id(int(id_store))
             print(f"{store.Name} was a {store.StoreType}")
@@ -61,3 +61,4 @@ def store_menu():
         elif selection == "8":
             break
         print()
+store_menu()

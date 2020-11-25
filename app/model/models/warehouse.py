@@ -1,7 +1,7 @@
 from model.db import Base
 import sqlalchemy as sa
+from sqlalchemy.orm import relationship
 
-from model.models.product import Product
 
 class Warehouse(Base):
     __tablename__ = "warehouses"
@@ -12,6 +12,7 @@ class Warehouse(Base):
     AmountToBeDelivered = sa.Column(sa.INTEGER, nullable=False)
     ProductDeliveryDate = sa.Column(sa.DATE)
 
+    products = relationship("Product",back_populates="productWarehouse")
     def __repr__(self):
         return f"{self.idWarehouse}, {self.ProductInStorage}, {self.MinimalAmountInStorage}, " \
                f"{self.AmountToBeDelivered}, {self.ProductDeliveryDate}"

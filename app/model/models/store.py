@@ -1,6 +1,5 @@
 from model.db import Base
 import sqlalchemy as sa
-from model.models.employee import Employee
 from sqlalchemy.orm import relationship
 
 
