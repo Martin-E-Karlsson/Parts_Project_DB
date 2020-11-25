@@ -22,7 +22,7 @@ def get_employee_by_id(id_employee):
 
 
 def get_all_employees_with_name(name):
-    return session.query(Employee).filter(Employee.Name.like(f"%{name}%").all())
+    return session.query(Employee).filter(Employee.Name.like(f"%{name}%")).all()
 
 
 def change_employee_name(employee, new_name):

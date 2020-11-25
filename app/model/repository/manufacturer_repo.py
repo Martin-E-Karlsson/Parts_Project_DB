@@ -21,7 +21,7 @@ def get_manufacturer_by_id(id_manufacturer):
 
 
 def get_all_manufacturers_with_name(manufacturer_name):
-    return session.query(Manufacturer).filter(Manufacturer.ManufacturerName.like(f"%{manufacturer_name}%").all())
+    return session.query(Manufacturer).filter(Manufacturer.ManufacturerName.like(f"%{manufacturer_name}%")).all()
 
 
 def change_manufacturer_name(manufacturer, new_manufacturer_name):

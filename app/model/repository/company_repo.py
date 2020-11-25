@@ -17,7 +17,7 @@ def get_company_by_id(id_company):
 
 
 def get_companies_by_name(company_name):
-    return session.query(Company).filter(Company.CompanyName.like(f"%{company_name}%").all())
+    return session.query(Company).filter(Company.CompanyName.like(f"%{company_name}%")).all()
 
 
 def change_company_name(company, new_company_name):

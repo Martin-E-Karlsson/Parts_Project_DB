@@ -13,9 +13,6 @@ from viewer.store_inventory_menu import store_inventory_menu
 from viewer.warehouse_menu import warehouse_menu
 
 
-
-
-
 def main_menu():
     while True:
         print("Main menu")
@@ -69,4 +66,3 @@ def main_menu():
             emloyees_menu()
         else:
             break
-

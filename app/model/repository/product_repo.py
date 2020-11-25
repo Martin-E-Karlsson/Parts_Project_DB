@@ -25,7 +25,7 @@ def get_product_by_id(id_product):
 
 
 def get_all_products_with_name(name):
-    return session.query(Product).filter(Product.Name.like(f"%{name}%").all())
+    return session.query(Product).filter(Product.Name.like(f"%{name}%")).all()
 
 
 def change_product_name(product, new_name):
