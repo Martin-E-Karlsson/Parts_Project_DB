@@ -61,4 +61,3 @@ def store_menu():
         elif selection == "8":
             break
         print()
-store_menu()
