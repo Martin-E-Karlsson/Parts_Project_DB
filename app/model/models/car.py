@@ -20,4 +20,4 @@ class Car(Base):
 
     def __repr__(self):
         return f"{self.idCar}, {self.Model}, {self.ModelYear}, {self.Color}, {self.RegNumber}," \
-               f"self.idCustomer, {self.idSource}"
+               f"{self.idCustomer}, {self.idSource}"

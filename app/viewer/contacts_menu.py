@@ -1,5 +1,5 @@
 from controller.contact_controller import insert_contact, get_all_contacts, get_contact_by_id, get_contact_by_name, \
-    change_contact_name
+    change_contact_name, get_all_contacts_with_name
 from controller.controller import store_changes
 
 
@@ -32,7 +32,7 @@ def contacts_menu():
                 print("Could not find a contact with id", id)
         elif selection == "4":
             name = input("Enter complete or partial name: ")
-            contacts = get_contact_by_name(name)
+            contacts = get_all_contacts_with_name(name)
             for key, contact in contacts.items():
                 print(f"{key}.{contact}")
             edit_selection = input("Enter number for contact to edit: ")

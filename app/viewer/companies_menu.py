@@ -1,4 +1,5 @@
-from controller.company_controller import get_all_companies, insert_company, get_company_by_id, change_company_name
+from controller.company_controller import get_all_companies, insert_company, get_company_by_id, change_company_name, \
+    get_companies_by_name
 from controller.controller import store_changes
 
 
@@ -28,7 +29,7 @@ def companies_menu():
                 print("Could not find a company with id", id)
         elif selection == "4":
             company_name = input("Enter complete or partial name of the company: ")
-            companies= get_company_by_id(company_name)
+            companies = get_companies_by_name(company_name)
             for key, company in companies.items():
                 print(f"{key}.{companies}")
             edit_selection = input("Enter number for company to edit: ")

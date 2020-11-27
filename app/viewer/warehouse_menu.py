@@ -1,5 +1,5 @@
 from controller.warehouse_controller import get_all_warehouses, get_warehouse_by_id, \
-    get_warehouses_by_product_delivery_date, change_product_in_storage
+    get_all_warehouses_with_product_delivery_date, change_product_in_storage
 
 
 
@@ -33,7 +33,7 @@ def warehouse_menu():
 
             else:
                 product_delivery_date = f"{year}-{month}-{day}"
-            w = get_warehouses_by_product_delivery_date(product_delivery_date)
+            w = get_all_warehouses_with_product_delivery_date(product_delivery_date)
             [print(k, " : ", w[k]) for k in w]
 
         elif selection == "4":

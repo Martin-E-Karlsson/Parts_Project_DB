@@ -1,3 +1,4 @@
+from viewer import products_catalog_menu
 from viewer.cars_menu import cars_menu
 from viewer.customers_menu import customers_menu
 from viewer.contacts_menu import contacts_menu
@@ -7,13 +8,11 @@ from viewer.companies_menu import companies_menu
 
 from viewer.employees_menu import emloyees_menu
 from viewer.products_menu import products_menu
+from viewer.retailers_menu import retailers_menu
 from viewer.source_menu import source_menu
 from viewer.store_menu import store_menu
 from viewer.store_inventory_menu import store_inventory_menu
 from viewer.warehouse_menu import warehouse_menu
-
-
-
 
 
 def main_menu():
@@ -54,9 +53,9 @@ def main_menu():
         elif selection == "8":
             products_menu()
         elif selection == "9":
-            pass
+            products_catalog_menu()
         elif selection == "10":
-            pass
+            retailers_menu()
         elif selection == "11":
             source_menu()
         elif selection == "12":
@@ -69,4 +68,3 @@ def main_menu():
             emloyees_menu()
         else:
             break
-

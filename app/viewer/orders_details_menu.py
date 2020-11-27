@@ -2,8 +2,8 @@ from datetime import datetime
 
 from controller.order_controller import insert_order
 from controller.order_details_controller import insert_order_details, get_all_order_details, \
-    get_order_details_by_order_id, get_order_details_by_purchase_date, change_order_details_product_quantity
-from controller.product_controller import get_product_by_name
+    get_order_details_by_order_id, get_all_order_details_with_purchase_date, change_order_details_product_quantity
+from controller.product_controller import get_all_products_with_name
 
 
 def orders_details_menu():
@@ -21,7 +21,7 @@ def orders_details_menu():
             add_order = insert_order(id_customer)
             id_order = add_order.idOrder
             name = input("Write the complete or partial name of the product: ")
-            products = get_product_by_name(name)
+            products = get_all_products_with_name(name)
             for key, product in products.items():
                 print(f"{key}.{product}")
             select_product = input("Enter the number of the product to be selected: ")
@@ -59,11 +59,12 @@ def orders_details_menu():
             purchase_date_day = input("Indicate purchase date day: ")
             purchase_date_month = input("Indicate purchase date month: ")
             purchase_date_year = input("Indicate purchase date year(4 digits): ")
-            order_details_by_purchase_date = get_order_details_by_purchase_date(purchase_date_year, purchase_date_month, purchase_date_day)
+            purchase_date = f"{purchase_date_year}-{purchase_date_month}-{purchase_date_day}"
+            order_details_by_purchase_date = get_all_order_details_with_purchase_date(purchase_date)
             if order_details_by_purchase_date:
                 print(order_details_by_purchase_date)
             else:
-                print("Could not find an order details associate to the purchase date: ", purchase_date_year,"-",purchase_date_month,"-",purchase_date_day)
+                print("Could not find an order details associate to the purchase date: ", purchase_date)
         elif selection == "5":
             break
 
