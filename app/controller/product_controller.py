@@ -13,10 +13,10 @@ def get_product_by_id(id_product):
     return pr.get_product_by_id(id_product)
 
 
-def get_all_products_with_name(name):
-    products = pr.get_all_products_with_name(name)
+def get_all_products_by_attribute(attribute_name, value):
+    products = pr.get_all_products_by_attribute(attribute_name, value)
     return {i+1: product for i, product in enumerate(products)}
 
 
-def change_product_name(product, new_name):
-    pr.change_product_name(product, new_name)
+def change_product_name(product, attribute_name, new_value):
+    pr.change_product_name(product,attribute_name, new_value)

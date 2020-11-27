@@ -19,17 +19,17 @@ def get_customer_by_id(id_customer):
     return session.query(Customer).filter(Customer.idCustomer == id_customer).first()
 
 
-def get_customer_by_contact_id(id_contact):
-    return session.query(Customer).filter(Customer.idContact == id_contact).first()
-
-
-def get_all_customers_with_address(address):
-    return session.query(Customer).filter(Customer.Address.like(f"%{address}%").all())
-
-
-def change_customer_address(customer, new_address):
+def get_all_customers_by_attribute(attribute_name, value):
     try:
-        customer.Address = new_address
+        return session.query(Customer).filter(getattr(Customer, attribute_name).like(f"%{value}%")).all()
+    except ValueError:
+        print(f"The attribute_name; {attribute_name} was incorrect.")
+
+
+def change_customer_attribute(customer, attribute_name, new_value):
+    try:
+        setattr(customer, attribute_name, new_value)
         session.commit()
-    except:
+    except ValueError:
+        print('Incorrect argument entered')
         session.rollback()

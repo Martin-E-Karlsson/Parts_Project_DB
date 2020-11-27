@@ -15,25 +15,17 @@ def get_all_store_inventories():
     return session.query(StoreInventory).all()
 
 
-def get_store_inventory_by_store_id(id_store):
-    return session.query(StoreInventory).filter(StoreInventory.idStore == id_store).first()
-
-
-def get_store_inventory_by_product_id(id_product):
-    return session.query(StoreInventory).filter(StoreInventory.idProduct == id_product).first()
-
-
-def change_store_inventory_store_id(store_inventory, new_store_id):
+def get_all_store_inventories_by_attribute(attribute_name, value):
     try:
-        store_inventory.idStore = new_store_id
-        session.commit()
-    except:
-        session.rollback()
+        return session.query(StoreInventory).filter(getattr(StoreInventory, attribute_name).like(f"%{value}%")).all()
+    except ValueError:
+        print(f"The attribute_name; {attribute_name} was incorrect.")
 
 
-def change_store_inventory_product_id(store_inventory, new_product_id):
+def change_store_inventory_attribute(store_inventory, attribute_name, new_value):
     try:
-        store_inventory.idProduct = new_product_id
+        setattr(store_inventory, attribute_name, new_value)
         session.commit()
-    except:
+    except ValueError:
+        print('Incorrect argument entered')
         session.rollback()

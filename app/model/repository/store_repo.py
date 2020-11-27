@@ -19,25 +19,17 @@ def get_store_by_id(id_store):
     return session.query(Store).filter(Store.idStore == id_store).first()
 
 
-def get_stores_by_name(name):
-    return session.query(Store).filter(Store.Name.like(f"%{name}%")).all()
-
-
-def get_stores_by_type(store_type):
-    return session.query(Store).filter(Store.StoreType.like(f"%{store_type}%")).all()
-
-
-def change_store_name(store, new_name):
+def get_all_stores_by_attribute(attribute_name, value):
     try:
-        store.Name = new_name
-        session.commit()
-    except:
-        session.rollback()
+        return session.query(Store).filter(getattr(Store, attribute_name).like(f"%{value}%")).all()
+    except ValueError:
+        print(f"The attribute_name; {attribute_name} was incorrect.")
 
 
-def change_store_type(store, new_type):
+def change_store_attribute(store, attribute_name, new_value):
     try:
-        store.StoreType = new_type
+        setattr(store, attribute_name, new_value)
         session.commit()
-    except:
+    except ValueError:
+        print('Incorrect argument entered')
         session.rollback()

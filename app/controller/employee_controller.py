@@ -13,10 +13,10 @@ def get_employee_by_id(id_employee):
     return er.get_employee_by_id(id_employee)
 
 
-def get_all_employees_with_name(name):
-    employees = er.get_all_employees_with_name(name)
+def get_all_employees_by_attribute(attribute_name, value):
+    employees = er.get_all_cars_by_attribute(attribute_name, value)
     return {i+1: employee for i, employee in enumerate(employees)}
 
 
-def change_employee_name(employee, new_name):
-    er.change_employee_name(employee, new_name)
+def change_employee_attribute(employee, attribute_name, new_value):
+    er.change_employee_attribute(employee, attribute_name, new_value)

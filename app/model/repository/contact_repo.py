@@ -21,17 +21,17 @@ def get_contact_by_id(id_contact):
     return session.query(Contact).filter(Contact.idContact == id_contact).first()
 
 
-def get_all_contacts_with_name(name):
-    return session.query(Contact).filter(Contact.Name.like(f"%{name}%"))
-
-
-def get_contact_by_name(name):
-    return session.query(Contact).filter(Contact.Name == name).first()
-
-
-def change_contact_name(contact, new_name):
+def get_all_contacts_by_attribute(attribute_name, value):
     try:
-        contact.Name = new_name
+        return session.query(Contact).filter(getattr(Contact, attribute_name).like(f"%{value}%")).all()
+    except ValueError:
+        print(f"The attribute_name; {attribute_name} was incorrect.")
+
+
+def change_contact_attribute(contact, attribute_name, new_value):
+    try:
+        setattr(contact, attribute_name, new_value)
         session.commit()
-    except:
+    except ValueError:
+        print('Incorrect argument entered')
         session.rollback()

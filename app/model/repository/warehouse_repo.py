@@ -21,13 +21,17 @@ def get_warehouse_by_id(id_warehouse):
     return session.query(Warehouse).filter(Warehouse.idWarehouse == id_warehouse).first()
 
 
-def get_all_warehouses_with_product_delivery_date(product_delivery_date):
-    return session.query(Warehouse).filter(Warehouse.ProductDeliveryDate == product_delivery_date).all()
-
-
-def change_product_in_storage(warehouse, new_product_in_storage):
+def get_all_warehouses_by_attribute(attribute_name, value):
     try:
-        warehouse.ProductInStorage = new_product_in_storage
+        return session.query(Warehouse).filter(getattr(Warehouse, attribute_name).like(f"%{value}%")).all()
+    except ValueError:
+        print(f"The attribute_name; {attribute_name} was incorrect.")
+
+
+def change_warehouse_attribute(warehouse, attribute_name, new_value):
+    try:
+        setattr(warehouse, attribute_name, new_value)
         session.commit()
-    except:
+    except ValueError:
+        print('Incorrect argument entered')
         session.rollback()

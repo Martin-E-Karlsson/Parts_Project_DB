@@ -24,13 +24,17 @@ def get_product_by_id(id_product):
     return session.query(Product).filter(Product.idProduct == id_product).first()
 
 
-def get_all_products_with_name(name):
-    return session.query(Product).filter(Product.Name.like(f"%{name}%").all())
-
-
-def change_product_name(product, new_name):
+def get_all_products_by_attribute(attribute_name, value):
     try:
-        product.Name = new_name
+        return session.query(Product).filter(getattr(Product, attribute_name).like(f"%{value}%")).all()
+    except ValueError:
+        print(f"The attribute_name; {attribute_name} was incorrect.")
+
+
+def change_product_attribute(product, attribute_name, new_value):
+    try:
+        setattr(product, attribute_name, new_value)
         session.commit()
-    except:
+    except ValueError:
+        print('Incorrect argument entered')
         session.rollback()

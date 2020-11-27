@@ -20,13 +20,17 @@ def get_manufacturer_by_id(id_manufacturer):
     return session.query(Manufacturer).filter(Manufacturer.idManufacturer == id_manufacturer).first()
 
 
-def get_all_manufacturers_with_name(manufacturer_name):
-    return session.query(Manufacturer).filter(Manufacturer.ManufacturerName.like(f"%{manufacturer_name}%").all())
-
-
-def change_manufacturer_name(manufacturer, new_manufacturer_name):
+def get_all_manufacturers_by_attribute(attribute_name, value):
     try:
-        manufacturer.ManufacturerName = new_manufacturer_name
+        return session.query(Manufacturer).filter(getattr(Manufacturer, attribute_name).like(f"%{value}%")).all()
+    except ValueError:
+        print(f"The attribute_name; {attribute_name} was incorrect.")
+
+
+def change_manufacturer_attribute(manufacturer, attribute_name, new_value):
+    try:
+        setattr(manufacturer, attribute_name, new_value)
         session.commit()
-    except:
+    except ValueError:
+        print('Incorrect argument entered')
         session.rollback()

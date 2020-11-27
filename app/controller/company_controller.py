@@ -13,10 +13,10 @@ def get_company_by_id(id_company):
     return cr.get_company_by_id(id_company)
 
 
-def get_companies_by_name(company_name):
-    companies = cr.get_companies_by_name(company_name)
+def get_all_companies_by_attribute(company_name, value):
+    companies = cr.get_all_companies_by_attribute(company_name, value)
     return {i+1: company for i, company in enumerate(companies)}
 
 
-def change_company_name(company, new_company_name):
-    cr.change_company_name(company, new_company_name)
+def change_company_attribute(company, attribute_name, new_company_name):
+    cr.change_company_attribute(company, attribute_name, new_company_name)

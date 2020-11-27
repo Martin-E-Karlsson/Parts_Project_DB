@@ -16,13 +16,17 @@ def get_company_by_id(id_company):
     return session.query(Company).filter(Company.idCompany == id_company).first()
 
 
-def get_companies_by_name(company_name):
-    return session.query(Company).filter(Company.CompanyName.like(f"%{company_name}%").all())
-
-
-def change_company_name(company, new_company_name):
+def get_all_companies_by_attribute(attribute_name, value):
     try:
-        company.CompanyName = new_company_name
+        return session.query(Company).filter(getattr(Company, attribute_name).like(f"%{value}%")).all()
+    except ValueError:
+        print(f"The attribute_name; {attribute_name} was incorrect.")
+
+
+def change_company_attribute(company, attribute_name, new_value):
+    try:
+        setattr(company, attribute_name, new_value)
         session.commit()
-    except:
+    except ValueError:
+        print('Incorrect argument entered')
         session.rollback()

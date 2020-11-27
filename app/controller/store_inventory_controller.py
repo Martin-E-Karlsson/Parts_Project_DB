@@ -9,17 +9,10 @@ def get_all_store_inventories():
     return sir.get_all_store_inventories()
 
 
-def get_store_inventory_by_store_id(id_store):
-    return sir.get_store_inventory_by_store_id(id_store)
+def get_all_store_inventories_by_attribute(attribute_name, value):
+    store_inventories = sir.get_all_store_inventories_by_attribute(attribute_name, value)
+    return {i+1: store_inventory for i, store_inventory in enumerate(store_inventories)}
 
 
-def get_store_inventory_by_product_id(id_product):
-    return sir.get_store_inventory_by_product_id(id_product)
-
-
-def change_store_inventory_store_id(store_inventory, new_store_id):
-    sir.change_store_inventory_store_id(store_inventory, new_store_id)
-
-
-def change_store_inventory_product_id(store_inventory, new_product_id):
-    sir.change_store_inventory_product_id(store_inventory, new_product_id)
+def change_store_inventory_attribute(store_inventory, attribute_name, new_value):
+    sir.change_store_inventory_attribute(store_inventory, attribute_name, new_value)

@@ -19,5 +19,10 @@ def get_all_order_details_with_purchase_date(purchase_date):
     return {i+1: order_detail for i, order_detail in enumerate(order_details)}
 
 
-def change_order_details_product_quantity(order_details, new_product_quantity):
-    odr.change_order_details_product_quantity(order_details, new_product_quantity)
+def get_all_order_details_by_attribute(attribute_name, value):
+    order_details = odr.get_all_order_details_with_purchase_date(attribute_name, value)
+    return {i+1: order_detail for i, order_detail in enumerate(order_details)}
+
+
+def change_order_details_attribute(order_details, attribute_name, new_value):
+    odr.change_order_details_attribute(order_details, attribute_name, new_value)

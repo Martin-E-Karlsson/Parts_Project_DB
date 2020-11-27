@@ -11,3 +11,7 @@ def get_all_orders():
 
 def get_order_by_order_id(id_order):
     return orp.get_order_by_order_id(id_order)
+
+
+def change_customer_id(order, new_value):
+    orp.change_customer_id(order, new_value)

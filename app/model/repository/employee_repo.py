@@ -21,13 +21,17 @@ def get_employee_by_id(id_employee):
     return session.query(Employee).filter(Employee.idEmployee == id_employee).first()
 
 
-def get_all_employees_with_name(name):
-    return session.query(Employee).filter(Employee.Name.like(f"%{name}%").all())
-
-
-def change_employee_name(employee, new_name):
+def get_all_employees_by_attribute(attribute_name, value):
     try:
-        employee.Name = new_name
+        return session.query(Employee).filter(getattr(Employee, attribute_name).like(f"%{value}%")).all()
+    except ValueError:
+        print(f"The attribute_name; {attribute_name} was incorrect.")
+
+
+def change_employee_attribute(employee, attribute_name, new_value):
+    try:
+        setattr(employee, attribute_name, new_value)
         session.commit()
-    except:
+    except ValueError:
+        print('Incorrect argument entered')
         session.rollback()
