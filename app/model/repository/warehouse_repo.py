@@ -21,6 +21,9 @@ def get_warehouse_by_id(id_warehouse):
     return session.query(Warehouse).filter(Warehouse.idWarehouse == id_warehouse).first()
 
 
+# TODO: Add get_warehouse_by_delivery_date function which eases the use of DATETIME objects.
+
+
 def get_all_warehouses_by_attribute(attribute_name, value):
     try:
         return session.query(Warehouse).filter(getattr(Warehouse, attribute_name).like(f"%{value}%")).all()

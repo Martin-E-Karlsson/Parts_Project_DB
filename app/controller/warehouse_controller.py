@@ -13,6 +13,9 @@ def get_warehouse_by_id(id_warehouse):
     return wr.get_warehouse_by_id(id_warehouse)
 
 
+# TODO: Add get_warehouse_by_delivery_date function which eases the use of DATETIME objects.
+
+
 def get_all_warehouses_by_attribute(attribute_name, value):
     warehouses = wr.get_all_warehouses_by_attribute(attribute_name, value)
     return {i+1: warehouse for i, warehouse in enumerate(warehouses)}
