@@ -25,15 +25,14 @@ def main_menu():
         print("4. Orders details")
         print("5. Cars")
         print("6. Manufacturer")
-        print("7. Orders")
-        print("8. Products")
-        print("9. Products catalog")
-        print("10. Retailer")
-        print("11. Sources")
-        print("12. Stores")
-        print("13. Store inventory")
-        print("14. Warehouse")
-        print("15. Employees")
+        print("7. Products")
+        print("8. Products catalog")
+        print("9. Retailer")
+        print("10. Sources")
+        print("11. Stores")
+        print("12. Store inventory")
+        print("13. Warehouse")
+        print("14. Employees")
 
         selection = input("> ")
         if selection == "1":
@@ -49,22 +48,20 @@ def main_menu():
         elif selection == "6":
             manufacturers_menu()
         elif selection == "7":
-            pass
-        elif selection == "8":
             products_menu()
-        elif selection == "9":
+        elif selection == "8":
             products_catalog_menu()
-        elif selection == "10":
+        elif selection == "9":
             retailers_menu()
-        elif selection == "11":
+        elif selection == "10":
             source_menu()
-        elif selection == "12":
+        elif selection == "11":
             store_menu()
-        elif selection == "13":
+        elif selection == "12":
             store_inventory_menu()
-        elif selection == "14":
+        elif selection == "13":
             warehouse_menu()
-        elif selection == "15":
+        elif selection == "14":
             emloyees_menu()
         else:
             break
