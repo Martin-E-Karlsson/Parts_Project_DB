@@ -8,3 +8,6 @@ app/controller/__pycache__
 app/viewer/__pycache__
 app/model/repository/__pycache__
 app/model/alembic.ini
+create
+docker
+exit
