@@ -1,6 +1,5 @@
 from . import session
-from model.models.mysql_db import Manufacturer, Customer, Car, Source, Contact, Company, Order, Orderdetail
-from model.models.mysql_db import Manufacturer, Customer, Car, Source, Contact, Company, Order, Store, Employee
+from model.models.mysql_db import Manufacturer, Customer, Car, Source, Contact, Company, Order, Orderdetail, Store
 import model.models.manufacturers as ma
 import model.models.stores as st
 import model.models.customers as cu
