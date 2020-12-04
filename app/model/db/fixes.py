@@ -1,6 +1,7 @@
 from . import session
-from model.models.mysql_db import Manufacturer
+from model.models.mysql_db import Manufacturer, Customer, Car, Source, Contact, Company, Order
 import model.models.manufacturers as ma
+import model.models.customers as cu
 
 
 def fix_manufacturers():
@@ -18,3 +19,45 @@ def fix_manufacturers():
 
         mongo_manufacturer = ma.Manufacturer(as_dict)
         mongo_manufacturer.insert()
+
+
+def fix_customers():
+    customers = session.query(Customer).all()
+    cars = session.query(Car).all()
+    orders = session.query(Order).all()
+    for customer in customers:
+        as_dict = customer.__dict__
+        as_dict['_id'] = int(as_dict['idCustomer'])
+        contact = session.query(Contact).filter(Contact.idContact == customer.idContact).first()
+        as_dict['name'] = contact.Name
+        as_dict['phone_number'] = contact.PhoneNumber
+        as_dict['email'] = contact.Email
+        if contact.idCompany:
+            as_dict['company_name'] = session.query(Company).filter(Company.idCompany == contact.idCompany).first().CompanyName
+        as_dict['address'] = str(as_dict['Address'])
+        as_dict['cars'] = []
+        for car in cars:
+            car_as_dict = car.__dict__.copy()
+            if car_as_dict['idCustomer'] == as_dict['_id']:
+                car_as_dict['_id'] = car_as_dict['idCar']
+                car_as_dict['model'] = car_as_dict['Model']
+                car_as_dict['year'] = car_as_dict['ModelYear']
+                car_as_dict['reg_number'] = car_as_dict['RegNumber']
+                car_as_dict['manufacturer_id'] = session.query(Source).filter(Source.idSource == car.idSource).first().idManufacturer
+                del car_as_dict['_sa_instance_state']
+                del car_as_dict['idCar']
+                del car_as_dict['Model']
+                del car_as_dict['ModelYear']
+                del car_as_dict['Color']
+                del car_as_dict['RegNumber']
+                del car_as_dict['idCustomer']
+                del car_as_dict['idSource']
+                as_dict['cars'].append(car_as_dict)
+        as_dict['orders'] = [order.idOrder for order in orders if as_dict['_id'] == order.idCustomer]
+        del as_dict['_sa_instance_state']
+        del as_dict['Address']
+        del as_dict['idCustomer']
+        del as_dict['idContact']
+
+        mongo_customer = cu.Customer(as_dict)
+        mongo_customer.insert()
