@@ -30,6 +30,12 @@ class Store(Base):
     Name = Column(String(100), nullable=False)
     StoreType = Column(String(100), nullable=False)
 
+    employee = relationship('Employee')
+
+
+    product = relationship('Product', secondary='storeinventorys')
+
+
 
 class Warehouse(Base):
     __tablename__ = 'warehouses'
@@ -62,7 +68,7 @@ class Employee(Base):
     PhoneNumber = Column(String(100), nullable=False)
     idStore = Column(ForeignKey('stores.idStore'), nullable=False, index=True)
 
-    store = relationship('Store')
+    orderdetail = relationship('Orderdetail')
 
 
 class Source(Base):

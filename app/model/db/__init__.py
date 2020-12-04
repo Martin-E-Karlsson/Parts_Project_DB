@@ -1,10 +1,12 @@
 import sqlalchemy
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from .db_settings import *
+
 
 from pymongo import MongoClient
 from abc import ABC
+
+from model.db.db_settings import *
 
 engine = sqlalchemy.create_engine(
     f'mysql+mysqlconnector://{MYSQLDB_USER}:{MYSQLDB_PASSWORD}@{MYSQLDB_HOST}:{MYSQLDB_PORT}/{MYSQLDB_DATABASE}'
