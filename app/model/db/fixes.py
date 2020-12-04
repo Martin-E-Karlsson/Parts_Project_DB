@@ -1,8 +1,10 @@
 from . import session
+from model.models.mysql_db import Manufacturer, Customer, Car, Source, Contact, Company, Order, Orderdetail
 from model.models.mysql_db import Manufacturer, Customer, Car, Source, Contact, Company, Order, Store, Employee
 import model.models.manufacturers as ma
 import model.models.stores as st
 import model.models.customers as cu
+import model.models.orders as od
 
 
 def fix_manufacturers():
@@ -30,23 +32,21 @@ def fix_customers():
         as_dict = customer.__dict__
         as_dict['_id'] = int(as_dict['idCustomer'])
         contact = session.query(Contact).filter(Contact.idContact == customer.idContact).first()
-        as_dict['name'] = contact.Name
-        as_dict['phone_number'] = contact.PhoneNumber
-        as_dict['email'] = contact.Email
+        as_dict['name'] = str(contact.Name)
+        as_dict['phone_number'] = str(contact.PhoneNumber)
+        as_dict['email'] = str(contact.Email)
         if contact.idCompany:
-            as_dict['company_name'] = session.query(Company).filter(
-                Company.idCompany == contact.idCompany).first().CompanyName
+            as_dict['company_name'] = str(session.query(Company).filter(Company.idCompany == contact.idCompany).first().CompanyName)
         as_dict['address'] = str(as_dict['Address'])
         as_dict['cars'] = []
         for car in cars:
             car_as_dict = car.__dict__.copy()
             if car_as_dict['idCustomer'] == as_dict['_id']:
-                car_as_dict['_id'] = car_as_dict['idCar']
-                car_as_dict['model'] = car_as_dict['Model']
-                car_as_dict['year'] = car_as_dict['ModelYear']
-                car_as_dict['reg_number'] = car_as_dict['RegNumber']
-                car_as_dict['manufacturer_id'] = session.query(Source).filter(
-                    Source.idSource == car.idSource).first().idManufacturer
+                car_as_dict['_id'] = int(car_as_dict['idCar'])
+                car_as_dict['model'] = str(car_as_dict['Model'])
+                car_as_dict['year'] = str(car_as_dict['ModelYear'])
+                car_as_dict['reg_number'] = str(car_as_dict['RegNumber'])
+                car_as_dict['manufacturer_id'] = session.query(Source).filter(Source.idSource == car.idSource).first().idManufacturer
                 del car_as_dict['_sa_instance_state']
                 del car_as_dict['idCar']
                 del car_as_dict['Model']
@@ -56,7 +56,7 @@ def fix_customers():
                 del car_as_dict['idCustomer']
                 del car_as_dict['idSource']
                 as_dict['cars'].append(car_as_dict)
-        as_dict['orders'] = [order.idOrder for order in orders if as_dict['_id'] == order.idCustomer]
+        as_dict['orders'] = [int(order.idOrder) for order in orders if as_dict['_id'] == order.idCustomer]
         del as_dict['_sa_instance_state']
         del as_dict['Address']
         del as_dict['idCustomer']
@@ -64,6 +64,36 @@ def fix_customers():
 
         mongo_customer = cu.Customer(as_dict)
         mongo_customer.insert()
+
+
+def fix_orders():
+    orders = session.query(Order).all()
+    order_details = session.query(Orderdetail).all()
+    for order in orders:
+        as_dict = order.__dict__
+        as_dict['_id'] = int(as_dict['idOrder'])
+        as_dict['customer_id'] = int(as_dict['idCustomer'])
+        as_dict['products'] = []
+        for order_detail in order_details:
+            if order_detail.idOrder == as_dict['_id']:
+                product_as_dict = order_detail.__dict__.copy()
+                product_as_dict['product_id'] = int(order_detail.idProduct)
+                product_as_dict['order_date'] = order_detail.PurchaseDate
+                product_as_dict['product_quantity'] = int(order_detail.ProductQuantity)
+                product_as_dict['employee_id'] = int(order_detail.idEmployee)
+                del product_as_dict['_sa_instance_state']
+                del product_as_dict['ProductQuantity']
+                del product_as_dict['PurchaseDate']
+                del product_as_dict['idOrder']
+                del product_as_dict['idProduct']
+                del product_as_dict['idEmployee']
+                as_dict['products'].append(product_as_dict)
+        del as_dict['_sa_instance_state']
+        del as_dict['idOrder']
+        del as_dict['idCustomer']
+
+        mongo_order = od.Order(as_dict)
+        mongo_order.insert()
 
 
 def fix_stores():
