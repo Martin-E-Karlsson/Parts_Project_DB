@@ -69,3 +69,15 @@ class Document(dict, ABC):
     @classmethod
     def delete(cls, **kwargs):
         cls.collection.delete_many(kwargs)
+
+    @classmethod
+    def replace_document(cls, id, new_document):
+        cls.collection.replace_one({'_id': id}, new_document)
+
+    @classmethod
+    def change_attribute(cls, id, attribute, value):
+        cls.collection.update_one({'_id': id}, {'$set': {attribute: value}})
+
+    @classmethod
+    def push_to_embedded_list(cls, id, attribute, value):
+        cls.collection.update_one({'_id': id}, {'$push': {attribute: value}})
