@@ -4,8 +4,9 @@ import model.models.manufacturers as ma
 import model.models.stores as st
 import model.models.customers as cu
 import model.models.orders as od
+import model.models.retailers as rt
+from model.models import products as p, retailers
 import datetime
-from app.model.models import products as p
 
 
 def fix_manufacturers():
@@ -106,13 +107,13 @@ def fix_stores():
         as_dict['name'] = str(as_dict['Name'])
         as_dict['store_type'] = str(as_dict['StoreType'])
         employees = []
-        for emp in store.employee:
+        for employee in store.employee:
             employees.append({
-                'name': str(emp.Name),
-                'phone_number': str(emp.PhoneNumber),
-                'email': str(emp.Email),
-                'orders': [order.idOrder for order in emp.orderdetail],
-                '_id': int(emp.idEmployee)
+                'name': str(employee.Name),
+                'phone_number': str(employee.PhoneNumber),
+                'email': str(employee.Email),
+                'orders': [order.idOrder for order in employee.orderdetail],
+                '_id': int(employee.idEmployee)
             })
         as_dict['employees'] = employees.copy()
 
@@ -171,4 +172,33 @@ def fix_products():
         mongo_product = p.Product(as_dict)
         mongo_product.insert()
 
+def fix_retailers():
+    retailers = session.query(Retailer).all()
+    for retailer in retailers:
+        as_dict = retailer.__dict__
+        as_dict['_id'] = int(as_dict['idRetailer'])
+        as_dict['name'] = str(as_dict['Name'])
+        as_dict['address'] = str(as_dict['Address'])
+        contacts = []
+        contact_fix = []
+        contact_fix.append(retailer.contact)
 
+        for contact in contact_fix:
+            print()
+            contacts.append({
+                'name': str(contact.Name),
+                'phone_number': str(contact.PhoneNumber),
+                'email': str(contact.Email)
+            })
+        as_dict['contacts'] = contacts.copy()
+        as_dict['manufacturer_id'] = int(as_dict['idManufacturer'])
+
+        del as_dict['Name']
+        del as_dict['Address']
+        del as_dict['idManufacturer']
+        del as_dict['_sa_instance_state']
+        del as_dict['idRetailer']
+        del as_dict['idContact']
+        del as_dict['contact']
+        mongo_product = rt.Retailer(as_dict)
+        mongo_product.insert()

@@ -16,5 +16,6 @@ def main():
     Customer.replace_document(customer_as_dict['_id'], customer_as_dict)
 
 
+
 if __name__ == '__main__':
     main()
