@@ -2,7 +2,6 @@ import sqlalchemy
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-
 from pymongo import MongoClient
 from abc import ABC
 
@@ -45,7 +44,7 @@ class Document(dict, ABC):
 
     def save(self):
         if not self._id:
-            del(self.__dict__['_id'])
+            del (self.__dict__['_id'])
             return self.collection.insert_one(self.__dict__)
         else:
             return self.collection.update({'_id': self._id}, **self.__dict__)
@@ -69,6 +68,10 @@ class Document(dict, ABC):
     @classmethod
     def delete(cls, **kwargs):
         cls.collection.delete_many(kwargs)
+
+    @classmethod
+    def change_attribute(cls, document_id, changed_document):
+        cls.collection.replace_one(document_id, changed_document)
 
     @classmethod
     def replace_document(cls, id, new_document):
