@@ -16,7 +16,7 @@ def get_all_manufacturers():
 
 def get_manufacturer_by_id(manufacturer_id):
     if manufacturer_id.isdigit():
-        Manufacturer.find(**{'_id': int(manufacturer_id)})
+        return Manufacturer.find(**{'_id': int(manufacturer_id)})
     else:
         return Manufacturer.find(**{'_id': ObjectId(manufacturer_id)})
 
