@@ -1,27 +1,29 @@
-from model.db import session
-from model.models.order import Order
+from model.models.orders import Order
 
 
-def insert_order(id_customer):
-    new_order = Order(
-        idCustomer=id_customer
+def insert_order(customer_id,product_id,order_date,product_quantity,employee_id):
+
+    new_order = Order({'customer_id': customer_id,
+                       'products': [{
+                           'product_id':product_id,
+                           'order_date':order_date,
+                           'product_quantity':product_quantity,
+                           'employee_id':employee_id}]}
     )
-    session.add(new_order)
-    session.commit()
+    Order.save()
+
 
 
 def get_all_orders():
-    return session.query(Order).all()
+    return Order.all()
 
 
 def get_order_by_order_id(id_order):
-    return session.query(Order).filter(Order.idOrder == id_order).first()
+    return Order.find(_id=id_order)
 
 
 def change_customer_id(order, new_value):
     try:
-        setattr(order, 'idCustomer', new_value)
-        session.commit()
+        Order.change_attribute(order, 'customer_id', new_value)
     except ValueError:
         print('Incorrect argument entered')
-        session.rollback()

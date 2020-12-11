@@ -1,37 +1,31 @@
-from model.db import session
-from model.models.employee import Employee
+from model.models.stores import Store
 
 
-def insert_employee(name, email, phone_number, id_store):
-    new_employee = Employee(
-        Name=name,
-        Email=email,
-        PhoneNumber=phone_number,
-        idStore=id_store
-    )
-    session.add(new_employee)
-    session.commit()
+def insert_employee(name, email, phone_number, id_store, orders=None):
+    if orders is None: orders = []
+    Store.push_to_embedded_list(id_store, 'employees', {'name': name, 'phone_number': phone_number, 'email': email, 'orders': orders})
 
 
 def get_all_employees():
-    return session.query(Employee).all()
+    return [emp.employees for emp in Store.all()]
 
 
 def get_employee_by_id(id_employee):
-    return session.query(Employee).filter(Employee.idEmployee == id_employee).first()
+    print('this function is unavailable')
 
 
 def get_all_employees_by_attribute(attribute_name, value):
-    try:
-        return session.query(Employee).filter(getattr(Employee, attribute_name).like(f"%{value}%")).all()
-    except ValueError:
-        print(f"The attribute_name; {attribute_name} was incorrect.")
+    return [attribute for employee in Store.all()
+            for attribute in employee.employees
+            if attribute[attribute_name] == value]
 
 
-def change_employee_attribute(employee, attribute_name, new_value):
-    try:
-        setattr(employee, attribute_name, new_value)
-        session.commit()
-    except ValueError:
-        print('Incorrect argument entered')
-        session.rollback()
+def change_employee_attribute(store_id, attribute_name, new_value):
+    value = Store.find(**{'_id' : store_id})[0].employees
+    for i,e in enumerate(value):
+        print(i,e)
+    print('whitch employee do you want to changhe:')
+    emp_id = input('>')
+    value[int(emp_id)].update({attribute_name: new_value})
+    Store.change_attribute(store_id, 'employees', value)
+

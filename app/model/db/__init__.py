@@ -4,6 +4,7 @@ from sqlalchemy.orm import sessionmaker
 
 from pymongo import MongoClient
 from abc import ABC
+from model.db.db_settings import *
 
 from model.db.db_settings import *
 
@@ -74,13 +75,9 @@ class Document(dict, ABC):
         cls.collection.replace_one(document_id, changed_document)
 
     @classmethod
+    def push_to_embedded_list(cls, id, attribute, value):
+        cls.collection.update_one({'_id': id}, {'$push': {attribute:value}})
+
+    @classmethod
     def replace_document(cls, id, new_document):
         cls.collection.replace_one({'_id': id}, new_document)
-
-    @classmethod
-    def change_attribute(cls, id, attribute, value):
-        cls.collection.update_one({'_id': id}, {'$set': {attribute: value}})
-
-    @classmethod
-    def push_to_embedded_list(cls, id, attribute, value):
-        cls.collection.update_one({'_id': id}, {'$push': {attribute: value}})
