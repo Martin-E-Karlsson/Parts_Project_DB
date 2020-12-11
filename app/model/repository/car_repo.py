@@ -33,5 +33,4 @@ def get_all_cars_by_attribute(attribute_name, value):
 def change_car_attribute(car, attribute_name, new_value):
     value = Customer.find(**{'cars': car})[0].cars
     value[0].update({attribute_name: new_value})
-    temp = Customer.find(**{'cars': car})
-    Customer.change_attribute(temp[0]._id, 'cars', value)
+    Customer.change_attribute(Customer.find(**{'cars': car})[0]._id, 'cars', value)
