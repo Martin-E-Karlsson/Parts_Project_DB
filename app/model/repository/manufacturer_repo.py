@@ -1,12 +1,11 @@
 from model.models.manufacturers import Manufacturer
+from bson import ObjectId
 
-
-def insert_manufacturer(hq_address, hq_phone_number, manufacturer_name, name):
+def insert_manufacturer(hq_address, hq_phone_number, manufacturer_name):
     new_manufacturer = Manufacturer({
         'hq_address': hq_address,
         'hq_phone_number': hq_phone_number,
-        'ManufacturerName': manufacturer_name,
-        'name': name}
+        'ManufacturerName': manufacturer_name,}
     )
     new_manufacturer.save()
 
@@ -16,7 +15,10 @@ def get_all_manufacturers():
 
 
 def get_manufacturer_by_id(manufacturer_id):
-    return Manufacturer.find(_id=manufacturer_id)
+    if manufacturer_id.isdigit():
+        Manufacturer.find(**{'_id': int(manufacturer_id)})
+    else:
+        return Manufacturer.find(**{'_id': ObjectId(manufacturer_id)})
 
 
 def get_all_manufacturers_by_attribute(attribute_name, value):
