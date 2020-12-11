@@ -1,4 +1,4 @@
-from app.model.db import Document, db
+from model.db import Document, db
 
 
 class Product(Document):

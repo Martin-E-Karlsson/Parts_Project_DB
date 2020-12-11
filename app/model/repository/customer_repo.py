@@ -1,5 +1,5 @@
 from model.db import session
-from model.models.customer import Customer
+from model.models.customers import Customer
 
 
 def insert_customer(address, id_contact):

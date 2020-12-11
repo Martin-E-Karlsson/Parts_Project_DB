@@ -2,7 +2,6 @@ import sqlalchemy
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-
 from pymongo import MongoClient
 from abc import ABC
 from model.db.db_settings import *
@@ -46,7 +45,7 @@ class Document(dict, ABC):
 
     def save(self):
         if not self._id:
-            del(self.__dict__['_id'])
+            del (self.__dict__['_id'])
             return self.collection.insert_one(self.__dict__)
         else:
             return self.collection.update({'_id': self._id}, **self.__dict__)
@@ -79,4 +78,6 @@ class Document(dict, ABC):
     def push_to_embedded_list(cls, id, attribute, value):
         cls.collection.update_one({'_id': id}, {'$push': {attribute:value}})
 
-
+    @classmethod
+    def replace_document(cls, id, new_document):
+        cls.collection.replace_one({'_id': id}, new_document)
