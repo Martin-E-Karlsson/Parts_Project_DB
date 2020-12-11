@@ -11,28 +11,28 @@ def main_menu():
     while True:
         print("Main menu")
         print("========")
-        print("1. Customers")
-        print("2. Cars")
-        print("3. Manufacturer")
-        print("4. Products")
-        print("5. Retailer")
-        print("6. Stores")
-        print("7. Employees")
+        print("1. Cars")
+        print("2. Customers")
+        print("3. Employees")
+        print("4. Manufacturer")
+        print("5. Products")
+        print("6. Retailer")
+        print("7. Stores")
 
         selection = input("> ")
         if selection == "1":
-            customers_menu()
-        elif selection == "2":
             cars_menu()
+        elif selection == "2":
+            customers_menu()
         elif selection == "3":
-            manufacturers_menu()
-        elif selection == "4":
-            products_menu()
-        elif selection == "5":
-            retailers_menu()
-        elif selection == "6":
-            store_menu()
-        elif selection == "7":
             emloyees_menu()
+        elif selection == "4":
+            manufacturers_menu()
+        elif selection == "5":
+            products_menu()
+        elif selection == "6":
+            retailers_menu()
+        elif selection == "7":
+            store_menu()
         else:
             break
