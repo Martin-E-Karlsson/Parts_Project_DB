@@ -14,7 +14,6 @@ def insert_car(customer_id, model, year, color, reg_number, manufacturer_id):
         }
     )
 
-
 def get_all_cars():
     car_list = [[car for car in customer.cars] for customer in Customer.all() if customer.cars]
     return [car for sub_list in car_list for car in sub_list]
