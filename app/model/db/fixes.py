@@ -45,9 +45,9 @@ def fix_customers():
         for car in cars:
             car_as_dict = car.__dict__.copy()
             if car_as_dict['idCustomer'] == as_dict['_id']:
-                car_as_dict['_id'] = int(car_as_dict['idCar'])
                 car_as_dict['model'] = str(car_as_dict['Model'])
                 car_as_dict['year'] = str(car_as_dict['ModelYear'])
+                car_as_dict['color'] = str(car_as_dict['Color'])
                 car_as_dict['reg_number'] = str(car_as_dict['RegNumber'])
                 car_as_dict['manufacturer_id'] = session.query(Source).filter(Source.idSource == car.idSource).first().idManufacturer
                 del car_as_dict['_sa_instance_state']

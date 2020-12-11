@@ -1,39 +1,40 @@
-from model.db import session
-from model.models.car import Car
+from model.models.customers import Customer
 
 
-def insert_car(model, model_year, color, reg_number, id_source, id_customer):
-    new_car = Car(
-        Model=model,
-        ModelYear=model_year,
-        Color=color,
-        RegNumber=reg_number,
-        idSource=id_source,
-        idCustomer=id_customer
+def insert_car(customer_id, model, year, color, reg_number, manufacturer_id):
+    Customer.push_to_embedded_list(
+        customer_id,
+        'cars',
+        {
+            'model': model,
+            'year': year,
+            'color': color,
+            'reg_number': reg_number,
+            'manufacturer_id': manufacturer_id,
+        }
     )
-    session.add(new_car)
-    session.commit()
 
 
 def get_all_cars():
-    return session.query(Car).all()
+    car_list = [[car for car in customer.cars] for customer in Customer.all() if customer.cars]
+    return [car for sub_list in car_list for car in sub_list]
 
 
-def get_car_by_id(id_car):
-    return session.query(Car).filter(Car.idCar == id_car).first()
+def get_car_by_id(car_id):
+    print("Function does not exist.")
 
 
 def get_all_cars_by_attribute(attribute_name, value):
-    try:
-        return session.query(Car).filter(getattr(Car, attribute_name).like(f"%{value}%")).all()
-    except ValueError:
-        print(f"The attribute_name; {attribute_name} was incorrect.")
+    return [attribute for car in Customer.all()
+            for attribute in car.cars
+            if attribute[attribute_name] == value]
 
 
-def change_car_attribute(car, attribute_name, new_value):
-    try:
-        setattr(car, attribute_name, new_value)
-        session.commit()
-    except ValueError:
-        print('Incorrect argument entered')
-        session.rollback()
+def change_car_attribute(customer_id, attribute_name, new_value):
+    value = Customer.find(**{'_id': customer_id})[0].cars
+    for i, e in enumerate(value):
+        print(i, e)
+    print('Select a car to change:')
+    car_id = input('>')
+    value[int(car_id)].update({attribute_name: new_value})
+    Customer.change_attribute(customer_id, 'cars', value)

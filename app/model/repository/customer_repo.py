@@ -1,35 +1,38 @@
-from model.db import session
 from model.models.customers import Customer
 
 
-def insert_customer(address, id_contact):
+def insert_customer(name, phone_number, email, address, company_name=None):
     new_customer = Customer(
-        Address=address,
-        idContact=id_contact
+        {
+            'name': name,
+            'phone_number': phone_number,
+            'email': email,
+            'address': address,
+            'cars': [],
+            'orders': [],
+            'company_name': company_name
+        }
     )
-    session.add(new_customer)
-    session.commit()
+    new_customer.save()
 
 
 def get_all_customers():
-    return session.query(Customer).all()
+    return Customer.all()
 
 
 def get_customer_by_id(id_customer):
-    return session.query(Customer).filter(Customer.idCustomer == id_customer).first()
+    return Customer.find(_id=id_customer)
 
 
 def get_all_customers_by_attribute(attribute_name, value):
     try:
-        return session.query(Customer).filter(getattr(Customer, attribute_name).like(f"%{value}%")).all()
+        return Customer.find(**{attribute_name: value})
     except ValueError:
         print(f"The attribute_name; {attribute_name} was incorrect.")
 
 
-def change_customer_attribute(customer, attribute_name, new_value):
+def change_customer_attribute(customer_id, attribute_name, new_value):
     try:
-        setattr(customer, attribute_name, new_value)
-        session.commit()
+        Customer.change_attribute(customer_id, attribute_name, new_value)
     except ValueError:
         print('Incorrect argument entered')
-        session.rollback()
