@@ -5,6 +5,7 @@ from sqlalchemy.orm import sessionmaker
 
 from pymongo import MongoClient
 from abc import ABC
+from model.db.db_settings import *
 
 from model.db.db_settings import *
 
@@ -69,3 +70,13 @@ class Document(dict, ABC):
     @classmethod
     def delete(cls, **kwargs):
         cls.collection.delete_many(kwargs)
+
+    @classmethod
+    def change_attribute(cls, document_id, changed_document):
+        cls.collection.replace_one(document_id, changed_document)
+
+    @classmethod
+    def push_to_embedded_list(cls, id, attribute, value):
+        cls.collection.update_one({'_id': id}, {'$push': {attribute:value}})
+
+

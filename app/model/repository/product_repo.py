@@ -1,40 +1,44 @@
-from model.db import session
-from model.models.product import Product
+from model.models.products import Product
 
 
-def insert_product(name, retailer, description, purchase_cost, sell_price, id_source, id_warehouse):
-    new_product = Product(
-        Name=name,
-        Retailer=retailer,
-        Description=description,
-        PurchaseCost=purchase_cost,
-        SellPrice=sell_price,
-        idSource=id_source,
-        idWarehouse=id_warehouse
-    )
-    session.add(new_product)
-    session.commit()
+def insert_product(name, description, purchase_cost, sell_price, product_in_stock, minimal_stock_amount, manufacturer_id, amount_ordered=None, delivery_date=None):
+    new_product = Product({
+        'name': name,
+        'description': description,
+        'purchase_cost': purchase_cost,
+        'sell_price': sell_price,
+        'product_in_stock': product_in_stock,
+        'minimal_stock_amount':minimal_stock_amount,
+        'manufacturer_id': manufacturer_id,
+        'amount_ordered': amount_ordered,
+        'delivery_date': delivery_date,
+        'retailers': []
+    })
+
 
 
 def get_all_products():
-    return session.query(Product).all()
+    return Product.all()
 
 
 def get_product_by_id(id_product):
-    return session.query(Product).filter(Product.idProduct == id_product).first()
+    return Product.find(_id=id_product)
 
 
 def get_all_products_by_attribute(attribute_name, value):
     try:
-        return session.query(Product).filter(getattr(Product, attribute_name).like(f"%{value}%")).all()
+        return Product.find(**{attribute_name: value})
     except ValueError:
         print(f"The attribute_name; {attribute_name} was incorrect.")
 
 
-def change_product_attribute(product, attribute_name, new_value):
+def change_product_attribute(product_id, attribute_name, new_value):
     try:
-        setattr(product, attribute_name, new_value)
-        session.commit()
+        Product.change_attribute(product_id, attribute_name, new_value)
     except ValueError:
         print('Incorrect argument entered')
-        session.rollback()
+
+
+def insert_retailer_to_product(product_id, retailer_name, retailer_id):
+    Product.push_to_embedded_list(product_id, 'retailers',{'retailer_name': retailer_name, 'retailer_id':retailer_id})
+
