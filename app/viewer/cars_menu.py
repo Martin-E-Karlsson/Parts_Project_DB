@@ -33,15 +33,15 @@ def cars_menu():
                 print("Could not find a car with id", id_car)
         elif selection == "4":
             model = input("Enter the model of the car: ")
-            cars = get_all_cars_by_attribute("Model", model)
+            cars = get_all_cars_by_attribute("model", model)
             for key, car in cars.items():
                 print(f"{key}.{car}")
             edit_selection = input("Enter number for the car to be edited: ")
             edit_selection = int(edit_selection)
 
             car = cars[edit_selection]
-            print(f" 1. Car model: {car.Model}")
+            print(f" 1. Car model: {car['model']}")
             new_model = input("Enter a new model: ")
-            change_car_attribute(car, "Model", new_model)
+            change_car_attribute(car, "model", new_model)
         elif selection == "5":
             break
