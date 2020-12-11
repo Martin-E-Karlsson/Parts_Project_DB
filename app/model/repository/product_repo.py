@@ -1,4 +1,5 @@
 from model.models.products import Product
+from bson import ObjectId
 
 
 def insert_product(name, description, purchase_cost, sell_price, product_in_stock, minimal_stock_amount, manufacturer_id, amount_ordered, delivery_date):
@@ -22,7 +23,10 @@ def get_all_products():
 
 
 def get_product_by_id(product_id):
-    return Product.find(_id=product_id)
+    if product_id.isdigit():
+        return Product.find(**{'_id': int(product_id)})
+    else:
+        return Product.find(**{'_id': ObjectId(product_id)})
 
 
 def get_all_products_by_attribute(attribute_name, value):

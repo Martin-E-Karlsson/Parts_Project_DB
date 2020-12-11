@@ -30,7 +30,7 @@ def manufacturers_menu():
                 print("Could not find a manufacturer with id", id_manufacturer)
         elif selection == "4":
             manufacturer_name = input("Enter complete or partial manufacturer's name: ")
-            manufacturers = get_all_manufacturers_by_attribute(manufacturer_name)
+            manufacturers = get_all_manufacturers_by_attribute('ManufacturerName', manufacturer_name)
             for key, manufacturer in manufacturers.items():
                 print(f"{key}.{manufacturer}")
             edit_selection = input("Enter number for manufacturer to edit: ")
@@ -39,6 +39,6 @@ def manufacturers_menu():
             manufacturer = manufacturers[edit_selection]
             print(f" 1. Manufacturer name: {manufacturer.ManufacturerName}")
             new_manufacturer_name = input("Enter a new manufacturer's name: ")
-            change_manufacturer_attribute(manufacturer, new_manufacturer_name)
+            change_manufacturer_attribute(manufacturer._id, 'ManufacturerName', new_manufacturer_name)
         elif selection == "5":
             break

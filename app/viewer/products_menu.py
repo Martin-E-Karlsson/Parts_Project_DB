@@ -18,9 +18,7 @@ def products_menu():
             description = input("Write the product description: ")
             purchase_cost = input("Write the product purchase_cost: ")
             sell_price = input("Write the product sell_price: ")
-            id_source = input("Write the product id_source: ")
-            id_warehouse = input("Write the product id_warehouse: ")
-            insert_product(name, retailer, description, purchase_cost, sell_price, id_source, id_warehouse)
+            insert_product(name, retailer, description, purchase_cost, sell_price, )
         elif selection == "2":
             products = get_all_products()
             for product in products:

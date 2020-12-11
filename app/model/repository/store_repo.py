@@ -1,5 +1,5 @@
 from model.models.stores import Store
-
+from bson import ObjectId
 
 def insert_store(name, store_type):
     new_store = Store({'name': name,
@@ -14,7 +14,10 @@ def get_all_stores():
 
 
 def get_store_by_id(store_id):
-    return Store.find(_id=store_id)
+    if store_id.isdigit():
+        return Store.find(**{'_id': int(store_id)})
+    else:
+        return Store.find(**{'_id': ObjectId(store_id)})
 
 
 def get_all_stores_by_attribute(attribute_name, value):
