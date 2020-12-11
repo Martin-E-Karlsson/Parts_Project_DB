@@ -1,5 +1,5 @@
 from controller.manufacturer_controller import insert_manufacturer, get_all_manufacturers, get_manufacturer_by_id, \
-    get_all_manufacturers_by_attribute, change_manufacturer_name
+    get_all_manufacturers_by_attribute, change_manufacturer_attribute
 
 
 def manufacturers_menu():
@@ -39,6 +39,6 @@ def manufacturers_menu():
             manufacturer = manufacturers[edit_selection]
             print(f" 1. Manufacturer name: {manufacturer.ManufacturerName}")
             new_manufacturer_name = input("Enter a new manufacturer's name: ")
-            change_manufacturer_name(manufacturer, new_manufacturer_name)
+            change_manufacturer_attribute(manufacturer, new_manufacturer_name)
         elif selection == "5":
             break

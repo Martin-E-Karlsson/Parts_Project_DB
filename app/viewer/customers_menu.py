@@ -1,6 +1,6 @@
 
 from controller.customer_controller import get_all_customers, insert_customer, get_customer_by_id, get_all_customers_by_attribute
-from controller.controller import store_changes
+
 
 
 def customers_menu():

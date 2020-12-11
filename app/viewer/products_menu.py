@@ -1,5 +1,5 @@
 from controller.product_controller import insert_product, get_all_products, get_product_by_id,\
-    get_all_products_by_attribute, change_product_name
+    get_all_products_by_attribute, change_product_attribute
 
 
 def products_menu():
@@ -43,6 +43,6 @@ def products_menu():
             product = products[edit_selection]
             print(f" 1. Product name: {product.Name}")
             new_name = input("Enter a new product name: ")
-            change_product_name(product, new_name)
+            change_product_attribute(product, new_name)
         elif selection == "5":
             break
