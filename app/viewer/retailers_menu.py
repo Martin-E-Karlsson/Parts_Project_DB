@@ -1,5 +1,5 @@
-from controller.retailer_controller import insert_retailer, get_all_retailers, get_retailer_by_id, change_retailer_name, \
-    get_all_retailers_with_name
+from controller.retailer_controller import insert_retailer, get_all_retailers, get_retailer_by_id, change_retailer_attribute, \
+    get_all_retailers_by_attribute
 
 
 def retailers_menu():
@@ -31,7 +31,7 @@ def retailers_menu():
                 print("Could not find a retailer with id", id_retailer)
         elif selection == "4":
             name = input("Enter complete or partial name of the retailer: ")
-            retailers= get_all_retailers_with_name(name)
+            retailers= get_all_retailers_by_attribute(name)
             for key, retailer in retailers.items():
                 print(f"{key}.{retailer}")
             edit_selection = input("Enter number for retailer to edit: ")
@@ -40,6 +40,6 @@ def retailers_menu():
             retailer = retailers[edit_selection]
             print(f" 1. Retailer name: {retailer.Name}")
             new_name = input("Enter a new retailer name: ")
-            change_retailer_name(retailer, new_name)
+            change_retailer_attribute(retailer, new_name)
         elif selection == "5":
             break

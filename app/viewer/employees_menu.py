@@ -1,5 +1,5 @@
 from controller.employee_controller import insert_employee, get_all_employees, get_employee_by_id,\
-    get_all_employees_with_name, change_employee_name
+    get_all_employees_by_attribute
 
 
 def emloyees_menu():
@@ -31,7 +31,7 @@ def emloyees_menu():
                 print("Could not find the employee id", id_employee)
         elif selection == "4":
             name = input("Enter complete or partial name: ")
-            employees= get_all_employees_with_name(name)
+            employees= get_all_employees_by_attribute(name)
             for key, employee in employees.items():
                 print(f"{key}.{employee}")
             edit_selection = input("Enter number for employee to edit: ")
@@ -40,6 +40,6 @@ def emloyees_menu():
             employee = employees[edit_selection]
             print(f" 1. Employee name: {employee.Name}")
             new_name = input("Enter a new name: ")
-            change_employee_name(employee, new_name)
+            get_all_employees_by_attribute(employee, new_name)
         elif selection == "5":
             break

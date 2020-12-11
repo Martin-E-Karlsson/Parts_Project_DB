@@ -1,5 +1,5 @@
-from controller.store_controller import insert_store, get_all_stores, get_store_by_id, get_stores_by_name, \
-    get_stores_by_type, change_store_name, change_store_type
+from controller.store_controller import insert_store, get_all_stores, get_store_by_id, get_all_stores_by_attribute, \
+    change_store_attribute
 
 
 def store_menu():
@@ -34,12 +34,12 @@ def store_menu():
         elif selection == "4":
             print("Name of store")
             name = input("> ")
-            s = get_stores_by_name(name)
+            s = get_all_stores_by_attribute(name)
             [print(k, " : ", s[k]) for k in s]
         elif selection == "5":
             print("Type of store")
             store_type = input("> ")
-            s = get_stores_by_type(store_type)
+            s = get_all_stores_by_attribute(store_type)
             [print(k, ":", s[k]) for k in s]
         elif selection == "6":
             print("which do you want to rename (id)")
@@ -47,16 +47,16 @@ def store_menu():
             store = get_store_by_id(int(id_store))
             print("New name of store")
             new_name = input("> ")
-            change_store_name(store, new_name)
+            change_store_attribute(store, new_name)
         elif selection == "7":
             print("which store do you want to change (id)")
             id_store = input("> ")
             store = get_store_by_id(int(id_store))
             print(f"{store.Name} was a {store.StoreType}")
             if store.StoreType == "online butik":
-                change_store_type(store, "fysisk butik")
+                change_store_attribute(store, "fysisk butik")
             else:
-                change_store_type(store, "online butik")
+                change_store_attribute(store, "online butik")
             print(f"{store.Name} is now a {store.StoreType}")
         elif selection == "8":
             break

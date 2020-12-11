@@ -1,5 +1,5 @@
 from controller.product_controller import insert_product, get_all_products, get_product_by_id,\
-    get_all_products_with_name, change_product_name
+    get_all_products_by_attribute, change_product_name
 
 
 def products_menu():
@@ -34,7 +34,7 @@ def products_menu():
                 print("Could not find a product with product id ", id_product)
         elif selection == "4":
             name = input("Enter complete or partial name: ")
-            products = get_all_products_with_name(name)
+            products = get_all_products_by_attribute(name)
             for key, product in products.items():
                 print(f"{key}.{product}")
             edit_selection = input("Enter product number and edit name: ")

@@ -1,4 +1,5 @@
-from controller.customer_controller import get_all_customers, insert_customer, get_customer_by_id, get_all_customers_with_address, change_customer_address
+
+from controller.customer_controller import get_all_customers, insert_customer, get_customer_by_id, get_all_customers_by_attribute
 from controller.controller import store_changes
 
 
@@ -29,7 +30,7 @@ def customers_menu():
                 print("Could not find a customer with id", id)
         elif selection == "4":
             address = input("Enter complete or partial address: ")
-            customers = get_all_customers_with_address(address)
+            customers = get_all_customers_by_attribute(address)
             for key, customer in customers.items():
                 print(f"{key}.{customer}")
             edit_selection = input("Enter number for customer to edit: ")
@@ -38,7 +39,7 @@ def customers_menu():
             customer = customers[edit_selection]
             print(f" 1. Customer Address: {customer.Address}")
             new_value = input("Enter a new address: ")
-            change_customer_address(customer, new_value)
+            get_all_customers_by_attribute(customer, new_value)
         elif selection == "5":
             break
 
