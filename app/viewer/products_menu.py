@@ -14,15 +14,11 @@ def products_menu():
         selection = input("> ")
         if selection == "1":
             name = input("Write the product name: ")
+            retailer = input("Write the product retailer: ")
             description = input("Write the product description: ")
             purchase_cost = input("Write the product purchase_cost: ")
             sell_price = input("Write the product sell_price: ")
-            product_in_stock = input("Write the product product in stockstock: ")
-            minimal_stock_amount = input("Write the minimal stock amount: ")
-            manufacturer_id = input("Write the products manufacturer_id: ")
-            amount_ordered = input("Write the amount ordered: ")
-            delivery_date = input("Write the delivery date: ")
-            insert_product(name, description, purchase_cost, sell_price, product_in_stock, minimal_stock_amount, manufacturer_id, amount_ordered, delivery_date)
+            insert_product(name, retailer, description, purchase_cost, sell_price, )
         elif selection == "2":
             products = get_all_products()
             for product in products:
@@ -36,15 +32,15 @@ def products_menu():
                 print("Could not find a product with product id ", id_product)
         elif selection == "4":
             name = input("Enter complete or partial name: ")
-            products = get_all_products_by_attribute('name',name)
+            products = get_all_products_by_attribute(name)
             for key, product in products.items():
                 print(f"{key}.{product}")
             edit_selection = input("Enter product number and edit name: ")
             edit_selection = int(edit_selection)
 
             product = products[edit_selection]
-            print(f" 1. Product name: {product.name}")
+            print(f" 1. Product name: {product.Name}")
             new_name = input("Enter a new product name: ")
-            change_product_attribute(product._id,'name', new_name)
+            change_product_attribute(product, new_name)
         elif selection == "5":
             break

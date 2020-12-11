@@ -15,9 +15,8 @@ def retailers_menu():
         if selection == "1":
             name = input("Indicate the name of the retailer: ")
             address = input("Indicate the address of the retailer: ")
-            id_contact = input("Indicate the address of the retailer: ")
             id_manufacturer = input("Indicate the address of the retailer: ")
-            insert_retailer(name, address, id_contact=None, id_manufacturer=None)
+            insert_retailer(name, address, id_manufacturer=None)
         elif selection == "2":
             retailers = get_all_retailers()
             for retailer in retailers:
@@ -31,7 +30,7 @@ def retailers_menu():
                 print("Could not find a retailer with id", id_retailer)
         elif selection == "4":
             name = input("Enter complete or partial name of the retailer: ")
-            retailers= get_all_retailers_by_attribute(name)
+            retailers= get_all_retailers_by_attribute('name', name)
             for key, retailer in retailers.items():
                 print(f"{key}.{retailer}")
             edit_selection = input("Enter number for retailer to edit: ")
@@ -40,6 +39,6 @@ def retailers_menu():
             retailer = retailers[edit_selection]
             print(f" 1. Retailer name: {retailer.Name}")
             new_name = input("Enter a new retailer name: ")
-            change_retailer_attribute(retailer, new_name)
+            change_retailer_attribute(retailer._id, 'name', new_name)
         elif selection == "5":
             break
