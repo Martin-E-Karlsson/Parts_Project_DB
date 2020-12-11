@@ -1,7 +1,7 @@
 from model.models.customers import Customer
 
 
-def insert_customer(name, phone_number, email, address, company_name=None):
+def insert_customer(name, phone_number, email, address, company_name):
     new_customer = Customer(
         {
             'name': name,
@@ -20,8 +20,8 @@ def get_all_customers():
     return Customer.all()
 
 
-def get_customer_by_id(id_customer):
-    return Customer.find(_id=id_customer)
+def get_customer_by_id(customer_id):
+    return Customer.find(_id=customer_id)
 
 
 def get_all_customers_by_attribute(attribute_name, value):

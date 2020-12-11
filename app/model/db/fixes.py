@@ -117,7 +117,7 @@ def fix_stores():
             })
         as_dict['employees'] = employees.copy()
 
-        as_dict['produckt_id'] = [p.idProduct for p in store.product]
+        as_dict['product_id'] = [p.idProduct for p in store.product]
 
         del as_dict['_sa_instance_state']
         del as_dict['Name']

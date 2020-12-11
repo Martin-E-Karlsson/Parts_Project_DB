@@ -1,17 +1,17 @@
 import model.repository.order_repo as orp
 
 
-def insert_order(id_customer):
-    orp.insert_car(id_customer)
+def insert_order(customer_id, product_id, order_date, product_quantity, employee_id):
+    orp.insert_car(customer_id, product_id, order_date, product_quantity, employee_id)
 
 
 def get_all_orders():
     return orp.get_all_orders()
 
 
-def get_order_by_order_id(id_order):
-    return orp.get_order_by_order_id(id_order)
+def get_order_by_order_id(order_id):
+    return orp.get_order_by_order_id(order_id)
 
 
-def change_customer_id(order, new_value):
-    orp.change_customer_id(order, new_value)
+def change_order_attribute(order_id, attribute_name, new_value):
+    orp.change_order_attribute(order_id, attribute_name, new_value)

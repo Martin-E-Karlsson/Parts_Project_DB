@@ -9,8 +9,8 @@ def get_all_manufacturers():
     return mr.get_all_manufacturers()
 
 
-def get_manufacturer_by_id(id_manufacturer):
-    return mr.get_manufacturer_by_id(id_manufacturer)
+def get_manufacturer_by_id(manufacturer_id):
+    return mr.get_manufacturer_by_id(manufacturer_id)
 
 
 def get_all_manufacturers_by_attribute(attribute_name, value):
@@ -18,5 +18,5 @@ def get_all_manufacturers_by_attribute(attribute_name, value):
     return {i+1: manufacturer for i, manufacturer in enumerate(manufacturers)}
 
 
-def change_manufacturer_name(manufacturer, attribute_name, new_value):
-    mr.change_manufacturer_name(manufacturer, attribute_name, new_value)
+def change_manufacturer_attribute(manufacturer_id, attribute_name, new_value):
+    mr.change_manufacturer_attribute(manufacturer_id, attribute_name, new_value)

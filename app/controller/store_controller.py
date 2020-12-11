@@ -9,8 +9,8 @@ def get_all_stores():
     return sr.get_all_stores()
 
 
-def get_store_by_id(id_store):
-    return sr.get_store_by_id(id_store)
+def get_store_by_id(store_id):
+    return sr.get_store_by_id(store_id)
 
 
 def get_all_stores_by_attribute(attribute_name, value):
@@ -18,5 +18,5 @@ def get_all_stores_by_attribute(attribute_name, value):
     return {i+1: store for i, store in enumerate(stores)}
 
 
-def change_store_attribute(store, attribute_name, new_value):
-    sr.change_store_attribute(store, attribute_name, new_value)
+def change_store_attribute(store_id, attribute_name, new_value):
+    sr.change_store_attribute(store_id, attribute_name, new_value)
