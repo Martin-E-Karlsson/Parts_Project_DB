@@ -5,7 +5,7 @@ def insert_manufacturer(hq_address, hq_phone_number, manufacturer_name):
     new_manufacturer = Manufacturer({
         'hq_address': hq_address,
         'hq_phone_number': hq_phone_number,
-        'ManufacturerName': manufacturer_name,}
+        'ManufacturerName': manufacturer_name}
     )
     new_manufacturer.save()
 
