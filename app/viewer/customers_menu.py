@@ -14,9 +14,17 @@ def customers_menu():
         print("5. Quit customers menu")
         selection = input("> ")
         if selection == "1":
-            address = input("Specifiy the address of the customer: ")
-            id_contact = input("Indicate the id_contact of the customer: ")
-            insert_customer(address, id_contact)
+            print("Please enter the required information below: ")
+            name = input("Customer name:\n>")
+            phone_number = input("Customer phone number:\n>")
+            email = input("Customer email:\n>")
+            address = input("Customer address:\n>")
+            company_answer = input("Does this customer represent a company? (y/n)")
+            if company_answer.lower() in ["y, yes", "yeah", "yarr", "ja", "ye"]:
+                company_name = input("Please enter the name of the company:\n>")
+            else:
+                company_name = None
+            insert_customer(name, phone_number, email, address, company_name)
         elif selection == "2":
             customers = get_all_customers()
             for customer in customers:
