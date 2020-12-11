@@ -1,11 +1,12 @@
 from model.models.manufacturers import Manufacturer
 
 
-def insert_manufacturer(hq_address, hq_phone_number, manufacturer_name):
-    new_manufacturer = Manufacturer(
-        HQAdress=hq_address,
-        HQPhoneNumber=hq_phone_number,
-        ManufacturerName=manufacturer_name
+def insert_manufacturer(hq_address, hq_phone_number, manufacturer_name, name):
+    new_manufacturer = Manufacturer({
+        'hq_address': hq_address,
+        'hq_phone_number': hq_phone_number,
+        'ManufacturerName': manufacturer_name,
+        'name': name}
     )
     new_manufacturer.save()
 
